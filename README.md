@@ -109,5 +109,4 @@ Before any public or production deployment, the deployment setup still needs to 
 - Complete appropriate privacy, security, and clinical-safety reviews before handling real health information.
 
 ## License
-
-No license file is currently included. Check the repository’s licensing status before redistributing or reusing this project.
+MIT License
