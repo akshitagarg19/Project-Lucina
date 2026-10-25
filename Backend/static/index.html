@@ -1,0 +1,2618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucina AI &bull; Athlete Health OS & Body Intelligence Platform</title>
+    <!-- Tailwind CSS with Custom Config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bg-main': '#090D16',
+                        'bg-card': '#111827',
+                        'border-card': '#1F2937',
+                        'accent-cyan': '#06B6D4',
+                        'accent-emerald': '#10B981',
+                        'accent-rose': '#F43F5E',
+                        'text-primary': '#F9FAFB',
+                        'text-secondary': '#9CA3AF'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Chart.js for Biometric & TreeSHAP Graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #090D16;
+            color: #F9FAFB;
+        }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Smooth Page Transition Animation (PRD v9 4.2) */
+        @keyframes pageFadeIn {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-page {
+            animation: pageFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #090D16; }
+        ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #374151; }
+
+        /* Range Slider Styling */
+        input[type=range] {
+            accent-color: #06B6D4;
+        }
+
+        .sidebar-active {
+            background-color: rgba(6, 182, 212, 0.15);
+            border-left: 3px solid #06B6D4;
+            color: #06B6D4;
+            font-weight: 700;
+        }
+        .sidebar-inactive {
+            color: #9CA3AF;
+        }
+        .sidebar-inactive:hover {
+            background-color: #1F2937;
+            color: #F9FAFB;
+        }
+    </style>
+</head>
+<body class="bg-[#090D16] text-[#F9FAFB] min-h-screen flex flex-col antialiased selection:bg-[#06B6D4] selection:text-black">
+
+    <!-- ================= LAYER 1: PUBLIC LANDING & SIGN-IN PAGE ================= -->
+    <div id="layer-1" class="min-h-screen flex flex-col justify-between animate-page">
+        <!-- Top Public Nav -->
+        <header class="border-b border-[#1F2937] bg-[#111827]/80 backdrop-blur-md sticky top-0 z-50 px-6 py-4">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#06B6D4] via-indigo-600 to-[#F43F5E] flex items-center justify-center text-white font-black text-xl shadow-lg shadow-cyan-950/50">
+                        &Psi;
+                    </div>
+                    <div>
+                        <span class="text-xl font-black tracking-tight text-[#F9FAFB]">Lucina <span class="text-[#06B6D4]">AI</span></span>
+                        <span class="hidden sm:inline-block ml-2 text-[11px] font-semibold text-[#9CA3AF] border-l border-[#1F2937] pl-2">Athlete Health OS</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#111827] border border-[#1F2937] text-xs font-semibold text-[#06B6D4]">
+                        <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
+                        <span>recHERsion '26 &bull; ACM-W NITK Surathkal</span>
+                    </div>
+                    <button onclick="signIn()" class="px-5 py-2.5 rounded-xl bg-[#06B6D4] hover:bg-cyan-400 text-slate-950 font-bold text-xs tracking-wide shadow-lg shadow-cyan-500/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+                        Sign In to Platform &rarr;
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <main class="max-w-7xl mx-auto px-6 py-12 lg:py-16 space-y-16 flex-1 w-full">
+            <div class="text-center max-w-4xl mx-auto space-y-6">
+                <div class="inline-flex items-center space-x-2 bg-[#111827] border border-[#1F2937] px-4 py-1.5 rounded-full text-xs font-semibold text-[#06B6D4] shadow-inner">
+                    <span class="text-[#10B981] font-bold">&bull;</span>
+                    <span>Continuous Physiological Intelligence &bull; Active Women's Health</span>
+                </div>
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight text-[#F9FAFB]">
+                    Closing the Diagnostic Gap in <br class="hidden sm:inline" />
+                    <span class="bg-gradient-to-r from-[#06B6D4] via-teal-300 to-[#10B981] bg-clip-text text-transparent">Female Athlete Health</span>
+                </h1>
+                <p class="text-base sm:text-lg text-[#9CA3AF] max-w-2xl mx-auto leading-relaxed">
+                    Continuous physiological intelligence, energy tracking, and body awareness for active women. Bridging daily fitness tracking, sports science (Low Energy Availability / REDs), and female endocrinology.
+                </p>
+                <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <button onclick="signIn()" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-[#06B6D4] to-cyan-500 hover:from-cyan-400 hover:to-[#06B6D4] text-slate-950 font-extrabold text-sm shadow-xl shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5">
+                        Sign In to Platform (Athlete Gateway) &rarr;
+                    </button>
+                    <a href="/docs" target="_blank" class="w-full sm:w-auto px-6 py-4 rounded-xl bg-[#111827] hover:bg-[#1F2937] border border-[#1F2937] text-[#9CA3AF] hover:text-[#F9FAFB] font-semibold text-sm transition">
+                        View FHIR & Machine Learning API Specs
+                    </a>
+                </div>
+            </div>
+
+            <!-- Public Data Banner Grid (6 Cards per PRD v9 Section 5.1) -->
+            <div class="space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#1F2937] pb-4">
+                    <div>
+                        <h2 class="text-xl font-black text-[#F9FAFB]">The Female Athlete Diagnostic Gap in Numbers</h2>
+                        <p class="text-xs text-[#9CA3AF]">Sports science research, Rotterdam diagnostic studies, and national health data</p>
+                    </div>
+                    <span class="text-xs font-mono bg-[#111827] text-[#06B6D4] border border-[#1F2937] px-3 py-1 rounded-lg self-start sm:self-auto font-semibold">
+                        ACOG &bull; IOC RED-S &bull; Rotterdam &bull; NFHS-5
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- Stat 1 -->
+                    <div class="bg-[#111827] border border-[#1F2937] rounded-2xl p-6 shadow-sm hover:border-[#06B6D4]/50 transition space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl sm:text-4xl font-black text-[#06B6D4]">7–10 Years</span>
+                            <span class="text-xs px-2 py-0.5 rounded bg-cyan-950 text-[#06B6D4] font-mono font-bold">Endocrine</span>
+                        </div>
+                        <p class="text-xs text-[#9CA3AF] leading-relaxed">
+                            Average diagnostic delay for complex endocrine conditions like <strong class="text-[#F9FAFB]">PCOS and endometriosis</strong>, leaving active women struggling without clear clinical answers.
+                        </p>
+                        <div class="text-[11px] text-[#06B6D4] font-semibold flex items-center space-x-1">
+                            <span>Solved by: Localized TreeSHAP pattern detection</span>
+                        </div>
+                    </div>
+
+                    <!-- Stat 2 -->
+                    <div class="bg-[#111827] border border-[#1F2937] rounded-2xl p-6 shadow-sm hover:border-[#10B981]/50 transition space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl sm:text-4xl font-black text-[#10B981]">65%</span>
+                            <span class="text-xs px-2 py-0.5 rounded bg-emerald-950 text-[#10B981] font-mono font-bold">REDs</span>
+                        </div>
+                        <p class="text-xs text-[#9CA3AF] leading-relaxed">
+                            Active women experiencing <strong class="text-[#F9FAFB]">unmonitored energy availability drops (REDs)</strong>, inducing metabolic shutdown, bone loss, and hypothalamic period pauses.
+                        </p>
+                        <div class="text-[11px] text-[#10B981] font-semibold flex items-center space-x-1">
+                            <span>Solved by: Low Fuel Defense Shield (&lt;30 kcal/kg FFM)</span>
+                        </div>
+                    </div>
+
+                    <!-- Stat 3 -->
+                    <div class="bg-[#111827] border border-[#1F2937] rounded-2xl p-6 shadow-sm hover:border-[#F43F5E]/50 transition space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl sm:text-4xl font-black text-[#F43F5E]">85%</span>
+                            <span class="text-xs px-2 py-0.5 rounded bg-rose-950 text-[#F43F5E] font-mono font-bold">Maternal</span>
+                        </div>
+                        <p class="text-xs text-[#9CA3AF] leading-relaxed">
+                            Delayed preeclampsia detection occurring when relying purely on <strong class="text-[#F9FAFB]">traditional static blood pressure cutoffs</strong> rather than personalized velocity.
+                        </p>
+                        <div class="text-[11px] text-[#F43F5E] font-semibold flex items-center space-x-1">
+                            <span>Solved by: Bayesian Vascular Strain Velocity</span>
+                        </div>
+                    </div>
+
+                    <!-- Stat 4 -->
+                    <div class="bg-[#111827] border border-[#1F2937] rounded-2xl p-6 shadow-sm hover:border-[#06B6D4]/50 transition space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl sm:text-4xl font-black text-[#06B6D4]">78%</span>
+                            <span class="text-xs px-2 py-0.5 rounded bg-cyan-950 text-[#06B6D4] font-mono font-bold">Awareness</span>
+                        </div>
+                        <p class="text-xs text-[#9CA3AF] leading-relaxed">
+                            Active women reporting their endocrine and pelvic symptoms were repeatedly <strong class="text-[#F9FAFB]">dismissed as routine exercise fatigue</strong> or standard athletic overtraining.
+                        </p>
+                        <div class="text-[11px] text-[#06B6D4] font-semibold flex items-center space-x-1">
+                            <span>Solved by: Everyday Body Signal Guided Check-Ins</span>
+                        </div>
+                    </div>
+
+                    <!-- Stat 5 -->
+                    <div class="bg-[#111827] border border-[#1F2937] rounded-2xl p-6 shadow-sm hover:border-[#F43F5E]/50 transition space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl sm:text-4xl font-black text-[#F43F5E]">43%</span>
+                            <span class="text-xs px-2 py-0.5 rounded bg-rose-950 text-[#F43F5E] font-mono font-bold">Participation</span>
+                        </div>
+                        <p class="text-xs text-[#9CA3AF] leading-relaxed">
+                            Teenage girls <strong class="text-[#F9FAFB]">dropping out of active sports</strong> due to unmanaged cycle friction, stigma, lack of female mentor guidance, and coach communication barriers.
+                        </p>
+                        <div class="text-[11px] text-[#F43F5E] font-semibold flex items-center space-x-1">
+                            <span>Solved by: Peer Community Hub & Anonymous Circles</span>
+                        </div>
+                    </div>
+
+                    <!-- Stat 6 -->
+                    <div class="bg-[#111827] border border-[#1F2937] rounded-2xl p-6 shadow-sm hover:border-[#10B981]/50 transition space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl sm:text-4xl font-black text-[#10B981]">15m &rarr; 1m</span>
+                            <span class="text-xs px-2 py-0.5 rounded bg-emerald-950 text-[#10B981] font-mono font-bold">FHIR R4</span>
+                        </div>
+                        <p class="text-xs text-[#9CA3AF] leading-relaxed">
+                            Compression of multi-week confusing wearable telemetry into <strong class="text-[#F9FAFB]">single-page clinical FHIR doctor briefs</strong> with LOINC vital codes and TreeSHAP payloads.
+                        </p>
+                        <div class="text-[11px] text-[#10B981] font-semibold flex items-center space-x-1">
+                            <span>Solved by: Dual-Translation Engine & Doctor Brief Exporter</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pre-Login Callout Banner -->
+            <div class="bg-gradient-to-r from-[#111827] via-slate-900 to-[#111827] border border-[#1F2937] rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-2">
+                    <h3 class="text-xl font-bold text-[#F9FAFB]">Ready to experience your continuous body intelligence?</h3>
+                    <p class="text-xs text-[#9CA3AF]">
+                        Access energy availability monitoring, cycle pattern recognition, gestational safety, and peer community circles.
+                    </p>
+                </div>
+                <button onclick="signIn()" class="px-6 py-3 rounded-xl bg-[#06B6D4] hover:bg-cyan-400 text-slate-950 font-bold text-xs shadow-lg shadow-cyan-500/20 transition whitespace-nowrap">
+                    Launch Athlete Workspace &rarr;
+                </button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-[#1F2937] bg-[#111827]/40 py-6 px-6 text-center text-xs text-[#9CA3AF]">
+            <p>Lucina AI &bull; Built for recHERsion '26 &bull; ACM-W NITK Surathkal &bull; HL7 FHIR R4 &amp; TreeSHAP Verified</p>
+        </footer>
+    </div>
+
+    <!-- ================= AUTHENTICATED WRAPPER (LAYERS 2 & 3) ================= -->
+    <div id="authenticated-app" class="min-h-screen flex hidden">
+
+        <!-- ================= PERSISTENT LEFT SIDEBAR NAVIGATION PANEL (PRD v9 FR-1.4) ================= -->
+        <aside class="w-64 bg-[#111827] border-r border-[#1F2937] flex flex-col justify-between shrink-0 min-h-screen sticky top-0 z-40 hidden md:flex">
+            <div>
+                <!-- Platform Branding -->
+                <div class="p-5 border-b border-[#1F2937]">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#06B6D4] via-indigo-600 to-[#F43F5E] flex items-center justify-center text-white font-black text-xl shadow-md">
+                            &Psi;
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-1.5">
+                                <span class="text-lg font-black tracking-tight text-[#F9FAFB]">Lucina <span class="text-[#06B6D4]">AI</span></span>
+                            </div>
+                            <p class="text-[10px] text-[#9CA3AF] font-semibold uppercase tracking-wider">Athlete Health OS</p>
+                        </div>
+                    </div>
+                    <div class="mt-3 px-2 py-1 bg-cyan-950/40 border border-[#06B6D4]/30 rounded-lg">
+                        <p class="text-[10px] text-[#06B6D4] font-bold flex items-center space-x-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#10B981] inline-block"></span>
+                            <span>recHERsion '26 &bull; ACM-W NITK</span>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for interactive biometric & SHAP graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .gradient-brand { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%); }
+        .sidebar-active { background-color: #4f46e5; color: #ffffff; font-weight: 700; }
+        .sidebar-inactive { color: #64748b; }
+        .sidebar-inactive:hover { background-color: #f1f5f9; color: #0f172a; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex">
+
+    <!-- ================= LEFT SIDEBAR NAVIGATION PANEL ================= -->
+    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 min-h-screen sticky top-0 z-40 hidden md:flex">
+        <div>
+            <!-- Platform Branding -->
+            <div class="p-5 border-b border-slate-100">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl gradient-brand flex items-center justify-center text-white font-black text-xl shadow-md">
+                        &Psi;
+                    </div>
+                    <div>
+                        <div class="flex items-center space-x-1.5">
+                            <span class="text-lg font-black tracking-tight text-slate-900">Lucina <span class="text-indigo-600">AI</span></span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Athlete Health OS</p>
+                    </div>
+                </div>
+                <div class="mt-3 px-2 py-1 bg-indigo-50 border border-indigo-100 rounded-lg">
+                    <p class="text-[10px] text-indigo-700 font-bold flex items-center space-x-1">
+                        <span>&bull;</span>
+                        <span>recHERsion '26 &bull; ACM-W NITK</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Workspace Navigation Links -->
+            <div class="p-3 space-y-1">
+                <div class="px-3 py-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider">Workspaces</div>
+                
+                <button onclick="switchView('gateway')" id="nav-gateway" class="w-full px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center space-x-3 transition sidebar-active">
+                    <span class="text-sm">🏠</span>
+                    <span>Problem Gateway</span>
+                </button>
+
+                <button onclick="switchView('energy')" id="nav-energy" class="w-full px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center space-x-3 transition sidebar-inactive">
+                    <span class="text-sm">⚡</span>
+                    <span>Energy & Athletic OS</span>
+                </button>
+
+                <button onclick="switchView('cycle')" id="nav-cycle" class="w-full px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center space-x-3 transition sidebar-inactive">
+                    <span class="text-sm">🌸</span>
+                    <span>Cycle & Hormone Patterns</span>
+                </button>
+
+                <button onclick="switchView('gestational')" id="nav-gestational" class="w-full px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center space-x-3 transition sidebar-inactive">
+                    <span class="text-sm">🤰</span>
+                    <span>Gestational Safety Engine</span>
+                </button>
+
+                <button onclick="switchView('community')" id="nav-community" class="w-full px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center space-x-3 transition sidebar-inactive">
+                    <span class="text-sm">💬</span>
+                    <span>Peer Community Hub</span>
+                </button>
+
+                <button onclick="switchView('doctor')" id="nav-doctor" class="w-full px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center space-x-3 transition sidebar-inactive">
+                    <span class="text-sm">📋</span>
+                    <span>Doctor Brief Export (FHIR)</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Sidebar Patient Selector & Footer -->
+        <div class="p-4 border-t border-slate-100 bg-slate-50/50">
+            <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Active Athlete Profile</label>
+            <select id="sidebarPatientSelect" onchange="changePatient(this.value)" class="w-full bg-white border border-slate-200 text-xs rounded-xl p-2 font-semibold text-slate-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <option value="223e4567-e89b-12d3-a456-426614174001">Sarah Jenkins (Distance Runner / RED-S)</option>
+                <option value="123e4567-e89b-12d3-a456-426614174000">Maya Patel (Cricket Bowler / PCOS)</option>
+                <option value="323e4567-e89b-12d3-a456-426614174002">Priya Sharma (Gestational 22w)</option>
+            </select>
+            <div class="mt-3 flex items-center justify-between text-[11px] text-slate-500">
+                <a href="/docs" target="_blank" class="text-indigo-600 font-bold hover:underline">Swagger Docs &rarr;</a>
+                <span class="text-[10px] text-slate-400">v5.0 OS</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ================= MAIN CONTENT WRAPPER ================= -->
+    <div class="flex-1 flex flex-col min-w-0">
+
+        <!-- Mobile Header Bar -->
+        <header class="bg-white border-b border-slate-200 p-4 flex items-center justify-between md:hidden sticky top-0 z-30">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-lg gradient-brand flex items-center justify-center text-white font-black text-sm">
+                    &Psi;
+                </div>
+                <span class="text-base font-black text-slate-900">Lucina <span class="text-indigo-600">AI</span></span>
+            </div>
+            <select onchange="switchView(this.value)" class="text-xs font-semibold bg-slate-100 p-2 rounded-lg border border-slate-200">
+                <option value="gateway">Problem Gateway</option>
+                <option value="energy">Energy & Athletic OS</option>
+                <option value="cycle">Cycle & Patterns</option>
+                <option value="gestational">Gestational Safety</option>
+                <option value="community">Community Hub</option>
+                <option value="doctor">Doctor Brief (FHIR)</option>
+            </select>
+        </header>
+
+        <!-- Dynamic Views Container -->
+        <main class="p-4 sm:p-6 lg:p-8 max-w-6xl mx-auto w-full space-y-8 flex-1">
+
+            <!-- ================= PAGE 1: PROBLEM STATEMENT GATEWAY & WORKSPACE CARDS ================= -->
+            <section id="view-gateway" class="space-y-8">
+                <!-- Hero Headline & Grassroots Narrative -->
+                <div class="bg-gradient-to-br from-indigo-950 via-slate-900 to-indigo-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+                    <div class="max-w-3xl space-y-3 relative z-10">
+                        <div class="inline-flex items-center space-x-2 bg-indigo-500/30 border border-indigo-400/30 px-3 py-1 rounded-full text-xs font-semibold text-indigo-200">
+                            <span>Grassroots Female Athlete Health OS &bull; recHERsion '26</span>
+                        </div>
+                        <h1 class="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
+                            "She plays for three teams, has one coach, and no physio."
+                        </h1>
+                        <p class="text-indigo-200 text-sm sm:text-base leading-relaxed">
+                            State-level players have physios and analysts. A 14-year-old at grassroots may bowl for school, club, and district in one week, with no one adding up her workload, and no female mentor to tell about her pain or her period.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Workspace Navigation Links (Layer 3 Items) -->
+                <div class="p-3 space-y-1">
+                    <div class="px-3 py-1.5 text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider">Operational Workspaces</div>
+                    
+                    <button onclick="switchView('gateway')" id="nav-gateway" class="w-full px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center transition sidebar-active">
+                        <span>Gateway / Problem Overview</span>
+                    </button>
+
+                    <button onclick="switchView('energy')" id="nav-energy" class="w-full px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center transition sidebar-inactive">
+                        <span>Energy & Athletic Intelligence</span>
+                    </button>
+
+                    <button onclick="switchView('cycle')" id="nav-cycle" class="w-full px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center transition sidebar-inactive">
+                        <span>Cycle & Hormonal Patterns</span>
+                    </button>
+
+                    <button onclick="switchView('gestational')" id="nav-gestational" class="w-full px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center transition sidebar-inactive">
+                        <span>Gestational Safety Engine</span>
+                    </button>
+
+                    <button onclick="switchView('community')" id="nav-community" class="w-full px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center transition sidebar-inactive">
+                        <span>Peer Community Hub</span>
+                    </button>
+
+                    <button onclick="switchView('doctor')" id="nav-doctor" class="w-full px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center transition sidebar-inactive">
+                        <span>Doctor Brief Export (FHIR PDF)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sidebar Athlete Selector & Profile Footer -->
+            <div class="p-4 border-t border-[#1F2937] bg-[#090D16]/50">
+                <label class="block text-[10px] font-bold text-[#9CA3AF] uppercase mb-1">Active Athlete Profile</label>
+                <select id="sidebarPatientSelect" onchange="changePatient(this.value)" class="w-full bg-[#111827] border border-[#1F2937] text-xs rounded-xl p-2 font-semibold text-[#F9FAFB] shadow-sm focus:outline-none focus:border-[#06B6D4]">
+                    <option value="223e4567-e89b-12d3-a456-426614174001">Sarah Jenkins (Distance Runner / RED-S)</option>
+                    <option value="123e4567-e89b-12d3-a456-426614174000">Maya Patel (Cricket Bowler / PCOS)</option>
+                    <option value="323e4567-e89b-12d3-a456-426614174002">Priya Sharma (Gestational 22w)</option>
+                </select>
+                <div class="mt-3 flex items-center justify-between text-[11px] text-[#9CA3AF]">
+                    <a href="/docs" target="_blank" class="text-[#06B6D4] font-bold hover:underline">Swagger Docs &rarr;</a>
+                    <button onclick="signOut()" class="text-[#F43F5E] hover:underline font-semibold">Sign Out</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ================= MAIN WORKSPACE CANVAS ================= -->
+        <div class="flex-1 flex flex-col min-w-0">
+
+            <!-- Mobile Navigation Bar -->
+            <header class="bg-[#111827] border-b border-[#1F2937] p-4 flex items-center justify-between md:hidden sticky top-0 z-30">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#06B6D4] via-indigo-600 to-[#F43F5E] flex items-center justify-center text-white font-black text-sm">
+                        &Psi;
+                    </div>
+                    <span class="text-base font-black text-[#F9FAFB]">Lucina <span class="text-[#06B6D4]">AI</span></span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <select onchange="switchView(this.value)" id="mobileNavSelect" class="text-xs font-semibold bg-[#090D16] text-[#F9FAFB] p-2 rounded-lg border border-[#1F2937]">
+                        <option value="gateway">Gateway</option>
+                        <option value="energy">Energy & Athletic</option>
+                        <option value="cycle">Cycle & Patterns</option>
+                        <option value="gestational">Gestational Safety</option>
+                        <option value="community">Community Hub</option>
+                        <option value="doctor">Doctor Brief</option>
+                    </select>
+                    <button onclick="signOut()" class="text-xs font-bold text-[#F43F5E] px-2 py-1 bg-[#1F2937] rounded-lg">Exit</button>
+                </div>
+            </header>
+
+            <!-- Dynamic Views Container -->
+            <main class="p-4 sm:p-6 lg:p-8 max-w-6xl mx-auto w-full space-y-8 flex-1 animate-page">
+
+                <!-- ================= LAYER 2: POST-LOGIN WORKSPACE GATEWAY PAGE ================= -->
+                <section id="view-gateway" class="space-y-8">
+                    <!-- Welcome & Active Status Banner -->
+                    <div class="bg-gradient-to-br from-[#111827] via-slate-900 to-[#090D16] border border-[#1F2937] rounded-3xl p-6 sm:p-8 text-[#F9FAFB] shadow-xl relative overflow-hidden">
+                        <div class="max-w-3xl space-y-3 relative z-10">
+                            <div class="inline-flex items-center space-x-2 bg-cyan-950/50 border border-[#06B6D4]/40 px-3 py-1 rounded-full text-xs font-semibold text-[#06B6D4]">
+                                <span>Layer 2 &bull; Active Post-Login Gateway</span>
+                            </div>
+                            <h1 class="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
+                                Welcome Back, <span id="gateway-welcome-name" class="text-[#06B6D4]">Sarah Jenkins</span>
+                            </h1>
+                            <p class="text-[#9CA3AF] text-xs sm:text-sm leading-relaxed">
+                                Continuous physiological intelligence hub. Select an operational workspace below to monitor live fuel metrics, explore cycle and hormonal Rotterdam patterns, track maternal hemodynamic velocity, or join peer circles.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-[#1F2937] grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                            <div class="bg-[#111827] p-3 rounded-xl border border-[#1F2937]">
+                                <span class="text-[#9CA3AF] text-[10px] block">Daily Fuel Status</span>
+                                <span id="gateway-stat-fuel" class="font-bold text-[#F43F5E]">18.00 kcal/kg (Deficit)</span>
+                            </div>
+                            <div class="bg-[#111827] p-3 rounded-xl border border-[#1F2937]">
+                                <span class="text-[#9CA3AF] text-[10px] block">Cycle Regularity Shift</span>
+                                <span id="gateway-stat-cycle" class="font-bold text-[#06B6D4]">12.4 Days Variance</span>
+                            </div>
+                            <div class="bg-[#111827] p-3 rounded-xl border border-[#1F2937]">
+                                <span class="text-[#9CA3AF] text-[10px] block">Vascular Strain Index</span>
+                                <span id="gateway-stat-map" class="font-bold text-[#10B981]">Normotensive (83 mmHg)</span>
+                            </div>
+                            <div class="bg-[#111827] p-3 rounded-xl border border-[#1F2937]">
+                                <span class="text-[#9CA3AF] text-[10px] block">Peer Circles</span>
+                                <span class="font-bold text-[#F9FAFB]">4 Active Topics</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4 Interactive Workspace Cards (PRD v9 Section 5.2) -->
+                    <div>
+                        <div class="mb-4">
+                            <h2 class="text-lg font-black text-[#F9FAFB]">Select an Operational Workspace</h2>
+                            <p class="text-xs text-[#9CA3AF]">Seamlessly enter your dedicated sports science and body intelligence workspaces</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <!-- Card 1: Energy & Athletic OS -->
+                            <div onclick="switchView('energy')" class="bg-[#111827] p-6 rounded-2xl border border-[#1F2937] hover:border-[#06B6D4] shadow-sm hover:shadow-cyan-950/50 transition cursor-pointer group">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-base font-bold text-[#F9FAFB] group-hover:text-[#06B6D4] transition">Energy &amp; Athletic OS</h3>
+                                    <span class="text-[10px] bg-cyan-950 text-[#06B6D4] px-2 py-0.5 rounded-full font-mono font-bold">Pillar 1</span>
+                                </div>
+                                <p class="text-xs text-[#9CA3AF] mt-2 leading-relaxed">
+                                    <strong>Fuel index, workload balance, REDs shield.</strong> Real-time calculation of Energy Availability (EA) and Acute-to-Chronic Workload Ratio (ACWR) to preempt period pauses and stress fractures.
+                                </p>
+                                <div class="mt-4 flex items-center text-xs font-bold text-[#06B6D4]">
+                                    <span>Launch Energy OS Workspace &rarr;</span>
+                                </div>
+                            </div>
+
+                            <!-- Card 2: Cycle & Hormonal Patterns -->
+                            <div onclick="switchView('cycle')" class="bg-[#111827] p-6 rounded-2xl border border-[#1F2937] hover:border-[#F43F5E] shadow-sm hover:shadow-rose-950/50 transition cursor-pointer group">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-base font-bold text-[#F9FAFB] group-hover:text-[#F43F5E] transition">Cycle &amp; Hormonal Patterns</h3>
+                                    <span class="text-[10px] bg-rose-950 text-[#F43F5E] px-2 py-0.5 rounded-full font-mono font-bold">Pillar 2</span>
+                                </div>
+                                <p class="text-xs text-[#9CA3AF] mt-2 leading-relaxed">
+                                    <strong>Cycle shifts, body signals, PCOS pattern detection.</strong> Everyday 3-question body check-in translating symptoms into plain-English TreeSHAP insight breakdowns.
+                                </p>
+                                <div class="mt-4 flex items-center text-xs font-bold text-[#F43F5E]">
+                                    <span>Launch Cycle Intelligence &rarr;</span>
+                                </div>
+                            </div>
+
+                            <!-- Card 3: Gestational Safety Engine -->
+                            <div onclick="switchView('gestational')" class="bg-[#111827] p-6 rounded-2xl border border-[#1F2937] hover:border-purple-500 shadow-sm hover:shadow-purple-950/50 transition cursor-pointer group">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-base font-bold text-[#F9FAFB] group-hover:text-purple-400 transition">Gestational Safety Engine</h3>
+                                    <span class="text-[10px] bg-purple-950 text-purple-400 px-2 py-0.5 rounded-full font-mono font-bold">Pillar 3</span>
+                                </div>
+                                <p class="text-xs text-[#9CA3AF] mt-2 leading-relaxed">
+                                    <strong>Blood pressure velocity trends &amp; vascular strain alerts.</strong> Dynamic Bayesian baseline updating (mean and variance tracking) for early preeclampsia risk detection.
+                                </p>
+                                <div class="mt-4 flex items-center text-xs font-bold text-purple-400">
+                                    <span>Track Vascular Strain &rarr;</span>
+                                </div>
+                            </div>
+
+                            <!-- Card 4: Peer Community Hub -->
+                            <div onclick="switchView('community')" class="bg-[#111827] p-6 rounded-2xl border border-[#1F2937] hover:border-[#10B981] shadow-sm hover:shadow-emerald-950/50 transition cursor-pointer group">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-base font-bold text-[#F9FAFB] group-hover:text-[#10B981] transition">Peer Community Hub</h3>
+                                    <span class="text-[10px] bg-emerald-950 text-[#10B981] px-2 py-0.5 rounded-full font-mono font-bold">Safe Space</span>
+                                </div>
+                                <p class="text-xs text-[#9CA3AF] mt-2 leading-relaxed">
+                                    <strong>Topic circles, anonymous posting, peer advice.</strong> Dedicated circles for REDs, PCOS fitness, coach communication strategies, and discreet recovery support.
+                                </p>
+                                <div class="mt-4 flex items-center text-xs font-bold text-[#10B981]">
+                                    <span>Enter Community Circles &rarr;</span>
+                                </div>
+                            </div>
+                        </div>
+                                <div class="mt-4 flex items-center text-xs font-bold text-[#10B981]">
+                                    <span>Enter Community Circles &rarr;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ================= LAYER 3 - WORKSPACE 1: ENERGY & ATHLETIC INTELLIGENCE ================= -->
+                <section id="view-energy" class="space-y-6 hidden">
+                    <!-- Workspace Header Banner -->
+                    <div class="bg-gradient-to-r from-[#111827] via-slate-900 to-[#111827] border border-[#1F2937] rounded-3xl p-6 text-[#F9FAFB] shadow-lg">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <span class="text-[10px] font-bold uppercase tracking-wider bg-cyan-950 border border-[#06B6D4]/30 px-2.5 py-1 rounded-full text-[#06B6D4]">
+                                    Energy OS &bull; Low Fuel Defense Shield
+                                </span>
+                                <h2 class="text-2xl font-black mt-2">Energy Availability (EA) &amp; Workload Balance</h2>
+                                <p class="text-[#9CA3AF] text-xs mt-1 max-w-2xl leading-relaxed">
+                                    Continuous physiological defense against Relative Energy Deficiency in Sport (REDs), hypothalamic period pauses, and bone stress fractures.
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <button onclick="openEnergyWizard()" class="px-4 py-2.5 bg-[#06B6D4] hover:bg-cyan-400 text-slate-950 font-bold rounded-xl text-xs shadow-md shadow-cyan-500/20 transition flex items-center space-x-1.5">
+                                    <span>⚡</span>
+                                    <span>Everyday 3-Question Fuel Check-In</span>
+                                </button>
+                                <button onclick="runAthleticCheck()" class="px-4 py-2.5 bg-[#1F2937] hover:bg-slate-700 text-[#F9FAFB] font-semibold rounded-xl text-xs transition">
+                                    Recalculate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <!-- Sliders & Inputs Panel with Guided Wizard Callout -->
+                        <div class="lg:col-span-5 bg-[#111827] rounded-2xl p-6 border border-[#1F2937] shadow-sm space-y-4">
+                            <div class="flex justify-between items-center border-b border-[#1F2937] pb-3">
+                                <h3 class="text-sm font-bold text-[#F9FAFB]">Training &amp; Fuel Inputs</h3>
+                                <button onclick="openEnergyWizard()" class="text-[10px] text-[#06B6D4] hover:underline font-bold bg-cyan-950/50 px-2 py-0.5 rounded border border-[#06B6D4]/30">
+                                    ✨ Use 3-Question Wizard
+                                </button>
+                            </div>
+
+                            <!-- Optional Accordion / Slider Section -->
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-xs font-semibold mb-1">
+                                        <span class="text-[#F9FAFB]">Fat-Free Mass (FFM)</span>
+                                        <span id="val_ath_ffm" class="font-mono text-[#06B6D4]">50.0 kg</span>
+                                    </div>
+                                    <input type="range" id="ath_ffm" min="35" max="80" step="0.5" value="50.0" oninput="document.getElementById('val_ath_ffm').innerText=this.value+' kg'" class="w-full">
+                                    <span class="text-[10px] text-[#9CA3AF]">Total body mass excluding fat mass</span>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-xs font-semibold mb-1">
+                                        <span class="text-[#F9FAFB]">Daily Food Intake (Caloric Fuel)</span>
+                                        <span id="val_ath_cal_in" class="font-mono text-[#06B6D4]">1500 kcal</span>
+                                    </div>
+                                    <input type="range" id="ath_cal_in" min="1000" max="4000" step="50" value="1500" oninput="document.getElementById('val_ath_cal_in').innerText=this.value+' kcal'" class="w-full">
+                                    <span class="text-[10px] text-[#9CA3AF]">Total nutritional energy consumed</span>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-xs font-semibold mb-1">
+                                        <span class="text-[#F9FAFB]">Workout Energy Burnt (Expenditure)</span>
+                                        <span id="val_ath_cal_exp" class="font-mono text-[#06B6D4]">600 kcal</span>
+                                    </div>
+                                    <input type="range" id="ath_cal_exp" min="200" max="2500" step="50" value="600" oninput="document.getElementById('val_ath_cal_exp').innerText=this.value+' kcal'" class="w-full">
+                                    <span class="text-[10px] text-[#9CA3AF]">Active training calories burnt</span>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3 pt-2">
+                                    <div>
+                                        <label class="text-xs font-semibold text-[#9CA3AF]">Acute 7d Workload</label>
+                                        <input type="number" id="ath_acute" value="1400.0" step="50" class="mt-1 w-full p-2 bg-[#090D16] border border-[#1F2937] rounded-xl font-mono text-xs text-[#F9FAFB]">
+                                    </div>
+                                    <div>
+                                        <label class="text-xs font-semibold text-[#9CA3AF]">Chronic 28d Workload</label>
+                                        <input type="number" id="ath_chronic" value="1000.0" step="50" class="mt-1 w-full p-2 bg-[#090D16] border border-[#1F2937] rounded-xl font-mono text-xs text-[#F9FAFB]">
+                                    </div>
+                                </div>
+
+                                <button onclick="runAthleticCheck()" class="w-full py-2.5 bg-[#06B6D4] hover:bg-cyan-400 text-slate-950 font-bold rounded-xl text-xs shadow transition">
+                                    Update Fuel &amp; Injury Index &rarr;
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Output Cards & Low Fuel Defense Shield -->
+                        <div class="lg:col-span-7 space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <!-- Energy Availability -->
+                                <div class="bg-[#111827] rounded-2xl p-5 border border-[#1F2937] shadow-sm">
+                                    <div class="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider">Energy Availability (Fuel Index)</div>
+                                    <div class="flex items-baseline space-x-2 mt-2">
+                                        <span id="ea_val_text" class="text-3xl font-black text-[#F43F5E]">18.00</span>
+                                        <span class="text-xs font-semibold text-[#9CA3AF]">kcal/kg FFM/day</span>
+                                    </div>
+                                    <div id="ea_badge" class="mt-2 inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-rose-950 text-[#F43F5E] border border-[#F43F5E]/30">
+                                        Low Fuel Energy Deficit Alert (&lt;30)
+                                    </div>
+                                    <p class="text-xs text-gray-400 mt-3 pt-3 border-t border-[#1F2937]">
+                                        Formula: (Food Intake - Workout Burnt) / Lean Body Mass = 18.0 kcal/kg FFM/day
+                                    </p>
+                                </div>
+
+                                <!-- ACWR Workload Ratio -->
+                                <div class="bg-[#111827] rounded-2xl p-5 border border-[#1F2937] shadow-sm">
+                                    <div class="text-[10px] font-bold text-[#9CA3AF] uppercase tracking-wider">Acute:Chronic Workload Ratio (ACWR)</div>
+                                    <div class="flex items-baseline space-x-2 mt-2">
+                                        <span id="acwr_val_text" class="text-3xl font-black text-amber-400">1.40</span>
+                                        <span class="text-xs font-semibold text-[#9CA3AF]">Ratio (7d/28d)</span>
+                                    </div>
+                                    <div id="acwr_badge" class="mt-2 inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-amber-950 text-amber-400 border border-amber-500/30">
+                                        High Load Caution Zone (1.30 - 1.50)
+                                    </div>
+                                    <div class="text-xs text-[#9CA3AF] mt-3 pt-3 border-t border-[#1F2937]">
+                                        Sweet Spot: 0.80 - 1.30 | Spike Hazard: &gt; 1.50
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Low Fuel Defense Shield Alert Box (PRD v9) -->
+                            <div id="athletic_alert_box" class="bg-rose-950/40 border border-[#F43F5E]/40 rounded-2xl p-5">
+                                <h4 class="text-sm font-bold text-[#F43F5E] flex items-center space-x-2">
+                                    <span>🛡️</span>
+                                    <span>Low Fuel Defense Shield Triggered</span>
+                                </h4>
+                                <p id="athletic_alert_msg" class="text-xs text-[#9CA3AF] mt-2 leading-relaxed">
+                                    CRITICAL: Low Energy Availability (&lt;30 kcal/kg FFM) detected. Triggered when workout energy burnt exceeds food eaten, initiating period pauses (hypothalamic amenorrhea) and bone mineral loss. Increase daily carb and protein fuel by at least 600 kcal.
+                                </p>
+                            </div>
+
+                            <!-- Tim Gabbett ACWR Injury Spectrum -->
+                            <div class="bg-[#111827] rounded-2xl p-5 border border-[#1F2937] shadow-sm">
+                                <h4 class="text-xs font-bold text-[#F9FAFB] mb-2">Tim Gabbett ACWR Injury Risk Spectrum</h4>
+                                <div class="h-4 rounded-full flex overflow-hidden text-[10px] text-slate-950 font-bold text-center">
+                                    <div class="w-1/4 bg-[#06B6D4] flex items-center justify-center">Under (&lt;0.8)</div>
+                                    <div class="w-2/4 bg-[#10B981] flex items-center justify-center">Sweet Spot (0.8 - 1.3)</div>
+                                    <div class="w-1/4 bg-amber-400 flex items-center justify-center">Caution</div>
+                                    <div class="w-1/4 bg-[#F43F5E] flex items-center justify-center text-white">Spike (&gt;1.5)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ================= LAYER 3 - WORKSPACE 2: CYCLE & HORMONAL PATTERNS ================= -->
+                <section id="view-cycle" class="space-y-6 hidden">
+                    <div class="bg-gradient-to-r from-[#111827] via-slate-900 to-[#111827] border border-[#1F2937] rounded-3xl p-6 text-[#F9FAFB] shadow-lg">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <span class="text-[10px] font-bold uppercase tracking-wider bg-rose-950 border border-[#F43F5E]/30 px-2.5 py-1 rounded-full text-[#F43F5E]">
+                                    Dual-Translation Engine &bull; Pillar 2
+                                </span>
+                                <h2 class="text-2xl font-black mt-2">Cycle &amp; Hormonal Patterns Intelligence</h2>
+                                <p class="text-[#9CA3AF] text-xs mt-1 max-w-2xl leading-relaxed">
+                                    Plain-English body signal awareness powered by Rotterdam diagnostic criteria and localized TreeSHAP additive explanations.
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <button onclick="openCycleWizard()" class="px-4 py-2.5 bg-[#F43F5E] hover:bg-rose-400 text-slate-950 font-bold rounded-xl text-xs shadow-md shadow-rose-500/20 transition flex items-center space-x-1.5">
+                                    <span>🌸</span>
+                                    <span>Everyday 3-Question Body Check-In</span>
+                                </button>
+                                <button onclick="runEndocrineInference()" class="px-4 py-2.5 bg-[#1F2937] hover:bg-slate-700 text-[#F9FAFB] font-semibold rounded-xl text-xs transition">
+                                    Run Inference
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <!-- Plain-Language Inputs (PRD v9 Section 6 Mapping) -->
+                        <div class="lg:col-span-5 bg-[#111827] rounded-2xl p-6 border border-[#1F2937] shadow-sm space-y-4">
+                            <div class="flex justify-between items-center border-b border-[#1F2937] pb-3">
+                                <div>
+                                    <h3 class="text-sm font-bold text-[#F9FAFB]">Body Signal Markers</h3>
+                                    <p class="text-[10px] text-[#9CA3AF]">Plain-English terms mapped to clinical indicators</p>
+                                </div>
+                                <button onclick="openCycleWizard()" class="text-[10px] text-[#06B6D4] hover:underline font-bold bg-cyan-950/50 px-2 py-0.5 rounded border border-[#06B6D4]/30">
+                                    ✨ 3-Question Check-In
+                                </button>
+                            </div>
+
+                            <!-- 1. Hormone Balance Score (LH/FSH) -->
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold">
+                                    <span class="text-[#F9FAFB]">Hormone Balance Score</span>
+                                    <span id="cycle_lh_val" class="font-mono text-[#06B6D4] font-bold">2.80</span>
+                                </div>
+                                <input type="range" id="cycle_lh" min="0.5" max="5.0" step="0.1" value="2.8" oninput="document.getElementById('cycle_lh_val').innerText=this.value" class="w-full mt-1">
+                                <span class="text-[10px] text-[#9CA3AF]">Auto-calculated from cycle regularity or optional blood test. (Normal 0.8–1.5)</span>
+                            </div>
+
+                            <!-- 2. Skin & Energy Marker (Free Testosterone) -->
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold">
+                                    <span class="text-[#F9FAFB]">Skin &amp; Energy Marker</span>
+                                    <span id="cycle_free_t_val" class="font-mono text-[#06B6D4] font-bold">68.5 ng/dL</span>
+                                </div>
+                                <input type="range" id="cycle_free_t" min="10" max="120" step="0.5" value="68.5" oninput="document.getElementById('cycle_free_t_val').innerText=this.value+' ng/dL'" class="w-full mt-1">
+                                <span class="text-[10px] text-[#9CA3AF]">Reflects oiliness, skin clarity, and physical energy levels. (Normal &lt;45)</span>
+                            </div>
+
+                            <!-- 3. Cycle Shift (Days) -->
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold">
+                                    <span class="text-[#F9FAFB]">Cycle Shift (Days)</span>
+                                    <span id="cycle_var_val" class="font-mono text-[#06B6D4] font-bold">12.4 days</span>
+                                </div>
+                                <input type="range" id="cycle_var" min="1" max="30" step="0.2" value="12.4" oninput="document.getElementById('cycle_var_val').innerText=this.value+' days'" class="w-full mt-1">
+                                <span class="text-[10px] text-[#9CA3AF]">Number of days your period shifts month-to-month. (&gt;7 days indicates oligomenorrhea)</span>
+                            </div>
+
+                            <!-- 4. Body Hair Density (Ferriman-Gallwey) -->
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold">
+                                    <span class="text-[#F9FAFB]">Body Hair Density</span>
+                                    <span id="cycle_hair_val" class="font-mono text-[#06B6D4] font-bold">14 / 36</span>
+                                </div>
+                                <input type="range" id="cycle_hair" min="0" max="36" step="1" value="14" oninput="document.getElementById('cycle_hair_val').innerText=this.value+' / 36'" class="w-full mt-1">
+                                <span class="text-[10px] text-[#9CA3AF]">Easy 1–36 scale rating hair growth on chin, chest, or belly.</span>
+                            </div>
+
+                            <button onclick="runEndocrineInference()" class="w-full py-2.5 bg-[#06B6D4] hover:bg-cyan-400 text-slate-950 font-bold rounded-xl text-xs shadow transition">
+                                Re-analyze Pattern Similarity &rarr;
+                            </button>
+                        </div>
+
+                        <!-- Outputs & Plain-English TreeSHAP Waterfall -->
+                        <div class="lg:col-span-7 space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <!-- PCOS Pattern Score -->
+                                <div class="bg-[#111827] rounded-2xl p-5 border border-[#1F2937] shadow-sm">
+                                    <span class="text-[10px] font-bold text-[#9CA3AF] uppercase">PCOS Pattern Match</span>
+                                    <div class="flex items-baseline space-x-2 mt-1">
+                                        <span id="cycle_pcos_pct" class="text-3xl font-black text-[#F43F5E]">82.5%</span>
+                                        <span id="cycle_pcos_badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-950 text-[#F43F5E] border border-[#F43F5E]/30">HIGH PATTERN MATCH</span>
+                                    </div>
+                                    <div class="w-full bg-[#1F2937] rounded-full h-2 mt-3 overflow-hidden">
+                                        <div id="cycle_pcos_bar" class="bg-[#F43F5E] h-2 rounded-full" style="width: 82.5%"></div>
+                                    </div>
+                                    <span class="text-[10px] text-[#9CA3AF] block mt-2">Rotterdam Criteria Consensus Model</span>
+                                </div>
+
+                                <!-- Endometriosis Index -->
+                                <div class="bg-[#111827] rounded-2xl p-5 border border-[#1F2937] shadow-sm">
+                                    <span class="text-[10px] font-bold text-[#9CA3AF] uppercase">Endometriosis Correlation Index</span>
+                                    <div class="flex items-baseline space-x-2 mt-1">
+                                        <span id="cycle_endo_pct" class="text-3xl font-black text-amber-400">31.0%</span>
+                                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-950 text-amber-400 border border-amber-500/30">MODERATE</span>
+                                    </div>
+                                    <div class="w-full bg-[#1F2937] rounded-full h-2 mt-3 overflow-hidden">
+                                        <div id="cycle_endo_bar" class="bg-amber-500 h-2 rounded-full" style="width: 31%"></div>
+                                    </div>
+                                    <span class="text-[10px] text-[#9CA3AF] block mt-2">Cycle variance &amp; dysmenorrhea markers</span>
+                                </div>
+                            </div>
+
+                            <!-- Plain-English Insight Breakdown (PRD v9 Section 6) -->
+                            <div class="bg-[#111827] rounded-2xl p-6 border border-[#1F2937] shadow-sm space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="text-sm font-bold text-[#F9FAFB]">Plain-English Insight Breakdown</h4>
+                                    <span class="text-[10px] text-[#10B981] bg-emerald-950 px-2 py-0.5 rounded border border-[#10B981]/30 font-mono font-bold">TreeSHAP Explainability</span>
+                                </div>
+                                <p class="text-xs text-[#9CA3AF]">Clear bullet points explaining what factors drove your body score:</p>
+                                <ul id="plain_insights_list" class="space-y-2 text-xs text-[#9CA3AF]">
+                                    <li class="p-3 bg-[#090D16] rounded-xl border border-[#1F2937] flex items-start space-x-2">
+                                        <span class="text-[#06B6D4] font-bold">&bull;</span>
+                                        <span><strong class="text-[#F9FAFB]">Hormone Balance Score (2.80):</strong> Elevated above the 1.5 target, adding +0.320 toward PCOS pattern match.</span>
+                                    </li>
+                                    <li class="p-3 bg-[#090D16] rounded-xl border border-[#1F2937] flex items-start space-x-2">
+                                        <span class="text-[#06B6D4] font-bold">&bull;</span>
+                                        <span><strong class="text-[#F9FAFB]">Skin &amp; Energy Marker (68.5 ng/dL):</strong> Elevated active androgens contribute +0.210 impact on muscle recovery and oil production.</span>
+                                    </li>
+                                    <li class="p-3 bg-[#090D16] rounded-xl border border-[#1F2937] flex items-start space-x-2">
+                                        <span class="text-[#06B6D4] font-bold">&bull;</span>
+                                        <span><strong class="text-[#F9FAFB]">Cycle Shift (12.4 days):</strong> Cycle variation greater than 7 days contributes +0.145 to pattern match.</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- TreeSHAP Attribution Waterfall -->
+                            <div class="bg-[#111827] rounded-2xl p-6 border border-[#1F2937] shadow-sm">
+                                <h4 class="text-xs font-bold text-[#F9FAFB] uppercase tracking-wider mb-2">Clinical TreeSHAP Additive Waterfall Plot</h4>
+                                <div class="h-56">
+                                    <canvas id="shapChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ================= LAYER 3 - WORKSPACE 3: GESTATIONAL SAFETY ENGINE ================= -->
+                <section id="view-gestational" class="space-y-6 hidden">
+                    <div class="bg-gradient-to-r from-[#111827] via-slate-900 to-[#111827] border border-[#1F2937] rounded-3xl p-6 text-[#F9FAFB] shadow-lg">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <span class="text-[10px] font-bold uppercase tracking-wider bg-purple-950 border border-purple-500/30 px-2.5 py-1 rounded-full text-purple-400">
+                                    Gestational Safety &bull; Vascular Strain Index
+                                </span>
+                                <h2 class="text-2xl font-black mt-2">Maternal Hemodynamic Velocity Tracker</h2>
+                                <p class="text-[#9CA3AF] text-xs mt-1 max-w-2xl leading-relaxed">
+                                    Dynamic Gaussian Bayesian baseline updating (mean and variance tracking) for early preeclampsia vascular strain detection.
+                                </p>
+                            </div>
+                            <button onclick="runGestationalCheck()" class="px-4 py-2.5 bg-purple-500 hover:bg-purple-400 text-slate-950 font-bold rounded-xl text-xs shadow-md transition self-start md:self-auto">
+                                Update Vascular Strain &rarr;
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <div class="lg:col-span-5 bg-[#111827] rounded-2xl p-6 border border-[#1F2937] shadow-sm space-y-4">
+                            <h3 class="text-sm font-bold text-[#F9FAFB] border-b border-[#1F2937] pb-3">Maternal Hemodynamics Input</h3>
+
+                            <div>
+                                <label class="text-xs font-semibold text-[#9CA3AF]">Gestational Age (Weeks)</label>
+                                <input type="number" id="gest_weeks" value="22" min="4" max="42" class="mt-1 w-full p-2.5 bg-[#090D16] border border-[#1F2937] rounded-xl font-mono text-xs text-[#F9FAFB]">
+                                <span class="text-[10px] text-[#9CA3AF]">2nd Trimester (Weeks 13–28) Critical Window</span>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="text-xs font-semibold text-[#9CA3AF]">Systolic BP (mmHg)</label>
+                                    <input type="number" id="gest_sys" value="134" class="mt-1 w-full p-2.5 bg-[#090D16] border border-[#1F2937] rounded-xl font-mono text-xs text-[#F9FAFB]">
+                                </div>
+                                <div>
+                                    <label class="text-xs font-semibold text-[#9CA3AF]">Diastolic BP (mmHg)</label>
+                                    <input type="number" id="gest_dia" value="88" class="mt-1 w-full p-2.5 bg-[#090D16] border border-[#1F2937] rounded-xl font-mono text-xs text-[#F9FAFB]">
+                                </div>
+                            </div>
+
+                            <button onclick="runGestationalCheck()" class="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-xl text-xs shadow transition">
+                                Track Bayesian MAP Velocity &rarr;
+                            </button>
+                        </div>
+
+                        <div class="lg:col-span-7 space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="bg-[#111827] rounded-2xl p-5 border border-[#1F2937] shadow-sm">
+                                    <span class="text-[10px] font-bold text-[#9CA3AF] uppercase">Vascular Strain Index (MAP)</span>
+                                    <div class="text-3xl font-black text-[#F43F5E] mt-1">
+                                        <span id="gest_current_map">103.33</span> <span class="text-xs text-[#9CA3AF] font-normal">mmHg</span>
+                                    </div>
+                                    <div id="gest_risk_badge" class="mt-2 inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-rose-950 text-[#F43F5E] border border-[#F43F5E]/30">
+                                        HIGH VASCULAR STRAIN
+                                    </div>
+                                    <span class="text-[10px] text-[#9CA3AF] block mt-2">Clinical threshold: &ge;90 mmHg in 2nd trimester</span>
+                                </div>
+
+                                <div class="bg-[#111827] rounded-2xl p-5 border border-[#1F2937] shadow-sm">
+                                    <span class="text-[10px] font-bold text-[#9CA3AF] uppercase">Bayesian Baseline Tracking</span>
+                                    <div class="text-3xl font-black text-[#06B6D4] mt-1">
+                                        <span id="gest_baseline_map">83.02</span> <span class="text-xs text-[#9CA3AF] font-normal">mmHg (baseline mean)</span>
+                                    </div>
+                                    <div class="text-xs font-bold text-[#F43F5E] mt-2">
+                                        Velocity Delta: <span id="gest_delta_text">+20.31 mmHg</span>
+                                    </div>
+                                    <span class="text-[10px] text-[#9CA3AF] block mt-2">Conjugate prior N(82, 6.0^2)</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-rose-950/40 border border-[#F43F5E]/40 rounded-2xl p-5">
+                                <h4 class="text-sm font-bold text-[#F43F5E]">ACOG Clinical Guidance Alert</h4>
+                                <p id="gest_recommendation_text" class="text-xs text-[#9CA3AF] mt-1 leading-relaxed">
+                                    Elevated Mean Arterial Pressure (103.33 mmHg &ge; 90 mmHg threshold at 22 weeks). Accelerating MAP velocity detected (+20.31 mmHg above personalized baseline). Clinical lab evaluation for proteinuria and uterine artery Doppler ultrasound recommended.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ================= LAYER 3 - WORKSPACE 4: PEER COMMUNITY HUB ================= -->
+                <section id="view-community" class="space-y-6 hidden">
+                    <div class="bg-gradient-to-r from-[#111827] via-slate-900 to-[#111827] border border-[#1F2937] rounded-3xl p-6 text-[#F9FAFB] shadow-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-950 border border-[#10B981]/30 px-2.5 py-1 rounded-full text-[#10B981]">
+                                Safe Space &bull; Peer Support
+                            </span>
+                            <h2 class="text-2xl font-black mt-2">Athlete Peer Community Hub</h2>
+                            <p class="text-[#9CA3AF] text-xs mt-1 max-w-xl leading-relaxed">
+                                Connect with active women, share recovery advice, discuss period communication strategies with coaches, and post anonymously.
+                            </p>
+                        </div>
+                        <button onclick="openCommunityModal()" class="px-4 py-2.5 bg-[#10B981] hover:bg-emerald-400 text-slate-950 font-bold rounded-xl text-xs shadow transition flex items-center space-x-2 self-start sm:self-auto">
+                            <span>+ Ask or Share Advice</span>
+                        </button>
+                    </div>
+
+                    <!-- Topic Circle Filters -->
+                    <div class="flex space-x-2 overflow-x-auto pb-2">
+                        <button onclick="filterCircle('all')" id="circle-all" class="circle-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#06B6D4] text-slate-950 shadow-sm shrink-0">
+                            All Topic Circles
+                        </button>
+                        <button onclick="filterCircle('Athletic Amenorrhea & REDs')" id="circle-reds" class="circle-btn px-4 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-[#9CA3AF] hover:text-[#F9FAFB] border border-[#1F2937] shrink-0">
+                            ⚡ Athletic Amenorrhea &amp; REDs
+                        </button>
+                        <button onclick="filterCircle('PCOS Fitness & Nutrition')" id="circle-pcos" class="circle-btn px-4 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-[#9CA3AF] hover:text-[#F9FAFB] border border-[#1F2937] shrink-0">
+                            🌸 PCOS Fitness &amp; Nutrition
+                        </button>
+                        <button onclick="filterCircle('Maternal Care')" id="circle-maternal" class="circle-btn px-4 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-[#9CA3AF] hover:text-[#F9FAFB] border border-[#1F2937] shrink-0">
+                            🤰 Maternal Care
+                        </button>
+                        <button onclick="filterCircle('General Wellness')" id="circle-wellness" class="circle-btn px-4 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-[#9CA3AF] hover:text-[#F9FAFB] border border-[#1F2937] shrink-0">
+                            🌱 General Wellness
+                        </button>
+                    </div>
+
+                    <!-- Posts Feed -->
+                    <div id="community_posts_container" class="space-y-4">
+                        <!-- Populated dynamically via fetch -->
+                    </div>
+                </section>
+
+                <!-- ================= LAYER 3 - WORKSPACE 5: DOCTOR BRIEF EXPORT (FHIR R4) ================= -->
+                <section id="view-doctor" class="space-y-6 hidden">
+                    <div class="bg-gradient-to-r from-[#111827] via-slate-900 to-[#111827] border border-[#1F2937] rounded-3xl p-6 text-[#F9FAFB] shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-cyan-950 border border-[#06B6D4]/30 px-2.5 py-1 rounded-full text-[#06B6D4]">
+                                Clinical Handoff &bull; HL7 FHIR Release 4
+                            </span>
+                            <h2 class="text-2xl font-black mt-2">Doctor Brief &amp; Clinical Export Station</h2>
+                            <p class="text-[#9CA3AF] text-xs mt-1 max-w-2xl leading-relaxed">
+                                Under-the-hood auto-formatting converts daily logs into standardized medical briefs with LOINC vital signs, SNOMED-CT clinical codes, and TreeSHAP attribution payloads.
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="openPrintableReport()" class="px-4 py-2.5 bg-[#F9FAFB] hover:bg-slate-200 text-slate-950 font-bold rounded-xl text-xs shadow transition">
+                                Printable Medical Brief &rarr;
+                            </button>
+                            <button onclick="downloadFhirBundle()" class="px-4 py-2.5 bg-[#06B6D4] hover:bg-cyan-400 text-slate-950 font-bold rounded-xl text-xs shadow transition">
+                                Download FHIR JSON
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Dual View Toggle: Simple Summary vs Clinical View -->
+                    <div class="bg-[#111827] rounded-2xl p-6 border border-[#1F2937] shadow-sm space-y-4">
+                        <div class="flex items-center justify-between border-b border-[#1F2937] pb-4">
+                            <div class="flex items-center space-x-2">
+                                <button onclick="toggleDoctorView('simple')" id="btn-view-simple" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#06B6D4] text-slate-950 shadow-sm">
+                                    My Simple Summary
+                                </button>
+                                <button onclick="toggleDoctorView('clinical')" id="btn-view-clinical" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#1F2937] text-[#9CA3AF] hover:text-[#F9FAFB]">
+                                    Clinical View (HL7 FHIR &amp; LOINC)
+                                </button>
+                            </div>
+                            <span class="text-xs text-[#9CA3AF] font-mono">Patient: <strong id="doc_patient_name" class="text-[#F9FAFB]">Sarah Jenkins</strong></span>
+                        </div>
+
+                        <!-- Simple Summary Pane -->
+                        <div id="pane-simple-summary" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <div class="p-4 bg-[#090D16] rounded-xl border border-[#1F2937]">
+                                    <div class="text-[10px] text-[#9CA3AF] uppercase font-bold">Fuel Availability Status</div>
+                                    <div class="text-lg font-black text-[#F43F5E] mt-1">Critical Low Fuel (&lt;30)</div>
+                                    <div class="text-[11px] text-[#9CA3AF] mt-1">EA = 18.0 kcal/kg FFM/day</div>
+                                </div>
+                                <div class="p-4 bg-[#090D16] rounded-xl border border-[#1F2937]">
+                                    <div class="text-[10px] text-[#9CA3AF] uppercase font-bold">Cycle Pattern</div>
+                                    <div class="text-lg font-black text-amber-400 mt-1">Period Pause Risk</div>
+                                    <div class="text-[11px] text-[#9CA3AF] mt-1">Workload Spike (ACWR 1.40)</div>
+                                </div>
+                                <div class="p-4 bg-[#090D16] rounded-xl border border-[#1F2937]">
+                                    <div class="text-[10px] text-[#9CA3AF] uppercase font-bold">Maternal MAP</div>
+                                    <div class="text-lg font-black text-[#10B981] mt-1">Normotensive</div>
+                                    <div class="text-[11px] text-[#9CA3AF] mt-1">Baselines in safe bounds</div>
+                                </div>
+                            </div>
+
+                            <div class="p-4 bg-cyan-950/30 rounded-xl border border-[#06B6D4]/30 text-xs text-[#9CA3AF] space-y-1">
+                                <strong class="block text-[#06B6D4]">Summary for your Doctor or Physio:</strong>
+                                <p>
+                                    "Athlete presents with an Acute:Chronic Workload Ratio of 1.40 and Energy Availability of 18.0 kcal/kg FFM, falling below the 30 kcal/kg safety threshold. Symptoms of secondary amenorrhea and elevated perceived exertion observed. Recommend nutritional refueling (+650 kcal/day) and bone density screening."
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Clinical / FHIR Pane -->
+                        <div id="pane-clinical-summary" class="space-y-4 hidden">
+                            <div class="text-xs text-[#9CA3AF] font-mono">
+                                <table class="w-full text-left border-collapse">
+                                    <thead class="bg-[#090D16] text-[10px] text-[#9CA3AF] uppercase">
+                                        <tr>
+                                            <th class="p-2 border-b border-[#1F2937]">Biometric Signal</th>
+                                            <th class="p-2 border-b border-[#1F2937]">Clinical Code</th>
+                                            <th class="p-2 border-b border-[#1F2937]">Standard System</th>
+                                            <th class="p-2 border-b border-[#1F2937]">Observed Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-[#1F2937] text-xs">
+                                        <tr>
+                                            <td class="p-2 font-semibold text-[#F9FAFB]">Mean Arterial Pressure (MAP)</td>
+                                            <td class="p-2 text-[#06B6D4] font-bold">8478-0</td>
+                                            <td class="p-2 text-[#9CA3AF]">LOINC</td>
+                                            <td class="p-2 font-bold text-[#F9FAFB]">83.33 mmHg</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-2 font-semibold text-[#F9FAFB]">Resting Heart Rate</td>
+                                            <td class="p-2 text-[#06B6D4] font-bold">8867-4</td>
+                                            <td class="p-2 text-[#9CA3AF]">LOINC</td>
+                                            <td class="p-2 font-bold text-[#F9FAFB]">46.0 /min</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-2 font-semibold text-[#F9FAFB]">HRV RMSSD</td>
+                                            <td class="p-2 text-[#06B6D4] font-bold">80404-7</td>
+                                            <td class="p-2 text-[#9CA3AF]">LOINC</td>
+                                            <td class="p-2 font-bold text-[#F9FAFB]">75.0 ms</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-2 font-semibold text-[#F9FAFB]">Hypothalamic Amenorrhea</td>
+                                            <td class="p-2 text-[#06B6D4] font-bold">14302001</td>
+                                            <td class="p-2 text-[#9CA3AF]">SNOMED-CT</td>
+                                            <td class="p-2 font-bold text-[#F43F5E]">Active Alert</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- JSON Viewer -->
+                            <div class="bg-[#090D16] rounded-xl p-4 border border-[#1F2937]">
+                                <div class="flex justify-between items-center text-xs text-[#9CA3AF] mb-2">
+                                    <span class="font-mono text-[#10B981]">HL7 FHIR R4 Bundle JSON Payload</span>
+                                    <button onclick="copyFhir()" class="hover:text-white text-[#06B6D4]">Copy JSON</button>
+                                </div>
+                                <pre id="fhir_json_code" class="text-xs text-[#10B981] font-mono overflow-x-auto max-h-64 leading-relaxed">
+Loading FHIR Payload...
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- ================= MODAL: CYCLE & HORMONAL 3-QUESTION WIZARD (PRD v9 Section 3.1) ================= -->
+    <div id="cycleWizardModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-[#111827] rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-[#1F2937] space-y-6">
+            <div class="flex justify-between items-start border-b border-[#1F2937] pb-4">
+                <div>
+                    <div class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-rose-950 text-[#F43F5E] text-[10px] font-bold border border-[#F43F5E]/30 mb-1">
+                        <span>✨ Everyday Questionnaire Wizard</span>
+                    </div>
+                    <h3 class="text-lg font-black text-[#F9FAFB]">Cycle &amp; Hormonal Patterns Check-In</h3>
+                    <p class="text-xs text-[#9CA3AF] mt-0.5">Answer 3 simple questions. We'll automatically calculate your Hormone Balance Score.</p>
+                </div>
+                <button onclick="closeCycleWizard()" class="text-[#9CA3AF] hover:text-white font-bold text-xl">&times;</button>
+            </div>
+
+            <form onsubmit="submitCycleWizard(event)" class="space-y-5 text-xs">
+                <!-- Question 1: Cycle Timing -->
+                <div class="space-y-2">
+                    <label class="font-bold text-[#F9FAFB] block">
+                        Question 1 (Cycle Timing): How regular was your last period?
+                    </label>
+                    <div class="grid grid-cols-1 gap-2">
+                        <label class="flex items-center space-x-3 p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] transition">
+                            <input type="radio" name="wiz_cycle_timing" value="ontime" checked class="accent-[#06B6D4]">
+                            <span class="text-[#F9FAFB]">On Time (28–32 days)</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] transition">
+                            <input type="radio" name="wiz_cycle_timing" value="late5_10" class="accent-[#06B6D4]">
+                            <span class="text-[#F9FAFB]">5–10 Days Late</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] transition">
+                            <input type="radio" name="wiz_cycle_timing" value="skipped" class="accent-[#06B6D4]">
+                            <span class="text-[#F9FAFB]">Skipped / 15+ Days Late</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 2: Body Energy & Skin -->
+                <div class="space-y-2">
+                    <label class="font-bold text-[#F9FAFB] block">
+                        Question 2 (Body Energy &amp; Skin): Noticed any unusual skin oiliness or energy drops this month?
+                    </label>
+                    <div class="grid grid-cols-1 gap-2">
+                        <label class="flex items-center space-x-3 p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] transition">
+                            <input type="radio" name="wiz_cycle_skin" value="none" checked class="accent-[#06B6D4]">
+                            <span class="text-[#F9FAFB]">None / Typical</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] transition">
+                            <input type="radio" name="wiz_cycle_skin" value="mild" class="accent-[#06B6D4]">
+                            <span class="text-[#F9FAFB]">Mild Oiliness / Fatigue</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] transition">
+                            <input type="radio" name="wiz_cycle_skin" value="high" class="accent-[#06B6D4]">
+                            <span class="text-[#F9FAFB]">High Oiliness / Energy Crash</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 3: Pre-Period Intensity -->
+                <div class="space-y-2">
+                    <label class="font-bold text-[#F9FAFB] block">
+                        Question 3 (Pre-Period Intensity): How intense are your pre-period symptoms (cramps, mood shifts)?
+                    </label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <label class="flex items-center justify-center p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] text-center transition">
+                            <input type="radio" name="wiz_cycle_intensity" value="mild" checked class="accent-[#06B6D4] mr-2">
+                            <span class="text-[#F9FAFB]">Mild</span>
+                        </label>
+                        <label class="flex items-center justify-center p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] text-center transition">
+                            <input type="radio" name="wiz_cycle_intensity" value="moderate" class="accent-[#06B6D4] mr-2">
+                            <span class="text-[#F9FAFB]">Moderate</span>
+                        </label>
+                        <label class="flex items-center justify-center p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] text-center transition">
+                            <input type="radio" name="wiz_cycle_intensity" value="intense" class="accent-[#06B6D4] mr-2">
+                            <span class="text-[#F9FAFB]">Intense</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-3 border-t border-[#1F2937] flex items-center justify-between">
+                    <button type="button" onclick="closeCycleWizard()" class="px-4 py-2 text-[#9CA3AF] hover:text-white font-semibold">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-6 py-2.5 bg-[#06B6D4] hover:bg-cyan-400 text-slate-950 font-bold rounded-xl shadow-md transition">
+                        Calculate Hormone Balance Score &rarr;
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= MODAL: ENERGY & ATHLETIC 3-QUESTION WIZARD (PRD v9 Section 3.2) ================= -->
+    <div id="energyWizardModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-[#111827] rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-[#1F2937] space-y-6">
+            <div class="flex justify-between items-start border-b border-[#1F2937] pb-4">
+                <div>
+                    <div class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-cyan-950 text-[#06B6D4] text-[10px] font-bold border border-[#06B6D4]/30 mb-1">
+                        <span>⚡ Everyday Questionnaire Wizard</span>
+                    </div>
+                    <h3 class="text-lg font-black text-[#F9FAFB]">Energy &amp; Athletic Check-In</h3>
+                    <p class="text-xs text-[#9CA3AF] mt-0.5">Answer 3 simple questions to calculate your Daily Fuel Index and update the Defense Shield.</p>
+                </div>
+                <button onclick="closeEnergyWizard()" class="text-[#9CA3AF] hover:text-white font-bold text-xl">&times;</button>
+            </div>
+
+            <form onsubmit="submitEnergyWizard(event)" class="space-y-5 text-xs">
+                <!-- Question 1: Training Fatigue -->
+                <div class="space-y-2">
+                    <label class="font-bold text-[#F9FAFB] block">
+                        Question 1 (Training Fatigue): How do your legs feel during workouts this week?
+                    </label>
+                    <div class="grid grid-cols-1 gap-2">
+                        <label class="flex items-center space-x-3 p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] transition">
+                            <input type="radio" name="wiz_ath_legs" value="fresh" checked class="accent-[#06B6D4]">
+                            <span class="text-[#F9FAFB]">Fresh</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] transition">
+                            <input type="radio" name="wiz_ath_legs" value="heavy" class="accent-[#06B6D4]">
+                            <span class="text-[#F9FAFB]">Moderately Heavy</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] transition">
+                            <input type="radio" name="wiz_ath_legs" value="exhausted" class="accent-[#06B6D4]">
+                            <span class="text-[#F9FAFB]">Exhausted / Heavy</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 2: Fuel & Meals -->
+                <div class="space-y-2">
+                    <label class="font-bold text-[#F9FAFB] block">
+                        Question 2 (Fuel &amp; Meals): Did your meal intake match your training effort today?
+                    </label>
+                    <div class="grid grid-cols-1 gap-2">
+                        <label class="flex items-center space-x-3 p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] transition">
+                            <input type="radio" name="wiz_ath_meals" value="well" checked class="accent-[#06B6D4]">
+                            <span class="text-[#F9FAFB]">Well Fueled</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] transition">
+                            <input type="radio" name="wiz_ath_meals" value="low" class="accent-[#06B6D4]">
+                            <span class="text-[#F9FAFB]">Slightly Low</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] transition">
+                            <input type="radio" name="wiz_ath_meals" value="skipped" class="accent-[#06B6D4]">
+                            <span class="text-[#F9FAFB]">Skipped Meals / Very Low</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 3: Resting Recovery -->
+                <div class="space-y-2">
+                    <label class="font-bold text-[#F9FAFB] block">
+                        Question 3 (Resting Recovery): How did you sleep last night?
+                    </label>
+                    <div class="grid grid-cols-1 gap-2">
+                        <label class="flex items-center space-x-3 p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] transition">
+                            <input type="radio" name="wiz_ath_sleep" value="deep" checked class="accent-[#06B6D4]">
+                            <span class="text-[#F9FAFB]">Deep / Rested</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] transition">
+                            <input type="radio" name="wiz_ath_sleep" value="interrupted" class="accent-[#06B6D4]">
+                            <span class="text-[#F9FAFB]">Interrupted</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 bg-[#090D16] border border-[#1F2937] rounded-xl cursor-pointer hover:border-[#06B6D4] transition">
+                            <input type="radio" name="wiz_ath_sleep" value="poor" class="accent-[#06B6D4]">
+                            <span class="text-[#F9FAFB]">Poor / Restless</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-3 border-t border-[#1F2937] flex items-center justify-between">
+                    <button type="button" onclick="closeEnergyWizard()" class="px-4 py-2 text-[#9CA3AF] hover:text-white font-semibold">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-6 py-2.5 bg-[#06B6D4] hover:bg-cyan-400 text-slate-950 font-bold rounded-xl shadow-md transition">
+                        Calculate Daily Fuel Index &rarr;
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= MODAL: NEW COMMUNITY POST ================= -->
+    <div id="communityModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-[#111827] rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-[#1F2937] space-y-4">
+            <div class="flex justify-between items-center border-b border-[#1F2937] pb-3">
+                <div>
+                    <h3 class="text-base font-bold text-[#F9FAFB]">Post in Athlete Community Hub</h3>
+                    <p class="text-xs text-[#9CA3AF]">Ask questions, share advice, or discuss training with peers</p>
+                </div>
+                <button onclick="closeCommunityModal()" class="text-[#9CA3AF] hover:text-white font-bold text-lg">&times;</button>
+                <!-- Grassroots & Clinical Data Grid (6 Cards) -->
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h2 class="text-lg font-black text-slate-900">The Grassroots Reality in Numbers</h2>
+                            <p class="text-xs text-slate-500">Real-world sports science and national healthcare survey benchmarks</p>
+                        </div>
+                        <span class="text-xs font-mono bg-slate-100 text-slate-600 px-2.5 py-1 rounded-lg font-semibold">NFHS-5 &bull; IJSPP &bull; JSAMS</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Stat 1 -->
+                        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-2">
+                            <div class="text-3xl font-black text-rose-600">59.1%</div>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                                of Indian adolescent girls (15–19) are <strong>anaemic</strong>, against 31.1% of boys.
+                            </p>
+                            <span class="text-[10px] text-slate-400 block font-semibold">(NFHS-5 National Survey)</span>
+                        </div>
+
+                        <!-- Stat 2 -->
+                        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-2">
+                            <div class="text-3xl font-black text-amber-600">13%</div>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                                of junior coaches apply bowling workload limits, despite <strong>92% knowing them</strong>.
+                            </p>
+                            <span class="text-[10px] text-slate-400 block font-semibold">(SMRMG 2018 &bull; 176 Coaches)</span>
+                        </div>
+
+                        <!-- Stat 3 -->
+                        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-2">
+                            <div class="text-3xl font-black text-purple-600">16.3%</div>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                                of youth community fast bowlers suffered a <strong>back stress fracture</strong> in a single season.
+                            </p>
+                            <span class="text-[10px] text-slate-400 block font-semibold">(JSAMS 2024 Clinical Cohort)</span>
+                        </div>
+
+                        <!-- Stat 4 -->
+                        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-2">
+                            <div class="text-3xl font-black text-indigo-600">55%</div>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                                of Indian athletes comfortable discussing their cycle with a male coach, vs <strong>92% with a female coach</strong>.
+                            </p>
+                            <span class="text-[10px] text-slate-400 block font-semibold">(IJSPP 2025 Athlete Survey)</span>
+                        </div>
+
+                        <!-- Stat 5 -->
+                        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-2">
+                            <div class="text-3xl font-black text-rose-500">78%</div>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                                of teenage girls avoid sport during their period; <strong>43% of "sporty" girls drop out</strong> after primary school.
+                            </p>
+                            <span class="text-[10px] text-slate-400 block font-semibold">(Women in Sport UK &bull; 4,000 Teens)</span>
+                        </div>
+
+                        <!-- Stat 6 -->
+                        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-2">
+                            <div class="text-3xl font-black text-emerald-600">40% &rarr; 23%</div>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                                Missed training fell from 40% to 23% once athletes & coaches received <strong>period education & discreet signals</strong>.
+                            </p>
+                            <span class="text-[10px] text-slate-400 block font-semibold">(Play Without Pause 2025 &bull; UP)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 Workspace Selector Cards (Portals) -->
+                <div>
+                    <h2 class="text-lg font-black text-slate-900 mb-1">Select an Operational Workspace</h2>
+                    <p class="text-xs text-slate-500 mb-4">Choose your body intelligence hub to view continuous physiological signals</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Portal 1 -->
+                        <div onclick="switchView('energy')" class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-indigo-500 shadow-sm hover:shadow-md transition cursor-pointer group">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 text-2xl flex items-center justify-center mb-4 group-hover:scale-105 transition">
+                                ⚡
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">Energy & Athletic OS</h3>
+                            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                                Real-time monitoring of Energy Availability (EA), ACWR workload spikes, and nervous system recovery (HRV RMSSD). Preempts hypothalamic amenorrhea.
+                            </p>
+                            <div class="mt-4 flex items-center text-xs font-bold text-indigo-600">
+                                <span>Launch Energy OS &rarr;</span>
+                            </div>
+                        </div>
+
+                        <!-- Portal 2 -->
+                        <div onclick="switchView('cycle')" class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-indigo-500 shadow-sm hover:shadow-md transition cursor-pointer group">
+                            <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 text-2xl flex items-center justify-center mb-4 group-hover:scale-105 transition">
+                                🌸
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">Cycle & Hormonal Patterns</h3>
+                            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                                Tracks period timing shifts, active androgen balance, and body hair scores. Powered by localized TreeSHAP with plain-English insights.
+                            </p>
+                            <div class="mt-4 flex items-center text-xs font-bold text-indigo-600">
+                                <span>Analyze Cycle Signals &rarr;</span>
+                            </div>
+                        </div>
+
+                        <!-- Portal 3 -->
+                        <div onclick="switchView('gestational')" class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-indigo-500 shadow-sm hover:shadow-md transition cursor-pointer group">
+                            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 text-2xl flex items-center justify-center mb-4 group-hover:scale-105 transition">
+                                🤰
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">Gestational Safety Engine</h3>
+                            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                                Continuous Mean Arterial Pressure (Vascular Strain Index) tracking with dynamic Bayesian baseline updating to flag preeclampsia velocity.
+                            </p>
+                            <div class="mt-4 flex items-center text-xs font-bold text-indigo-600">
+                                <span>Track Vascular Strain &rarr;</span>
+                            </div>
+                        </div>
+
+                        <!-- Portal 4 -->
+                        <div onclick="switchView('community')" class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-indigo-500 shadow-sm hover:shadow-md transition cursor-pointer group">
+                            <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 text-2xl flex items-center justify-center mb-4 group-hover:scale-105 transition">
+                                💬
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">Peer Community Hub</h3>
+                            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                                Safe, topic-driven circles for athletes and active women. Anonymous Q&A, coach communication strategies, and verified peer recovery advice.
+                            </p>
+                            <div class="mt-4 flex items-center text-xs font-bold text-indigo-600">
+                                <span>Join Athlete Circles &rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= PAGE 2: ENERGY & ATHLETIC INTELLIGENCE ================= -->
+            <section id="view-energy" class="space-y-6 hidden">
+                <div class="bg-gradient-to-r from-emerald-900 via-teal-800 to-slate-900 rounded-3xl p-6 text-white shadow-lg">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-500/30 px-2.5 py-1 rounded-full text-emerald-200">
+                                Energy OS &bull; Low Fuel Defense Shield
+                            </span>
+                            <h2 class="text-2xl font-black mt-2">Energy Availability (EA) & Workload Index</h2>
+                            <p class="text-emerald-200 text-xs mt-1 max-w-2xl">
+                                Real-time physiological defense against Relative Energy Deficiency in Sport (REDs), hypothalamic period pauses, and bone stress fractures.
+                            </p>
+                        </div>
+                        <button onclick="runAthleticCheck()" class="px-4 py-2.5 bg-white text-emerald-950 font-bold rounded-xl text-xs shadow hover:bg-emerald-50 transition self-start md:self-auto">
+                            Calculate Live Fuel Metrics &rarr;
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Sliders & Inputs -->
+                    <div class="lg:col-span-5 bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
+                        <h3 class="text-sm font-bold text-slate-900 border-b pb-3">Training & Fuel Input Sliders</h3>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span>Fat-Free Mass (FFM)</span>
+                                <span id="val_ath_ffm" class="font-mono text-indigo-600">50.0 kg</span>
+                            </div>
+                            <input type="range" id="ath_ffm" min="35" max="80" step="0.5" value="50.0" oninput="document.getElementById('val_ath_ffm').innerText=this.value+' kg'" class="w-full accent-indigo-600">
+                            <span class="text-[10px] text-slate-400">Total body mass excluding body fat</span>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span>Daily Food Intake (Caloric Fuel)</span>
+                                <span id="val_ath_cal_in" class="font-mono text-indigo-600">1500 kcal</span>
+                            </div>
+                            <input type="range" id="ath_cal_in" min="1000" max="4000" step="50" value="1500" oninput="document.getElementById('val_ath_cal_in').innerText=this.value+' kcal'" class="w-full accent-indigo-600">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span>Workout Energy Burnt (Expenditure)</span>
+                                <span id="val_ath_cal_exp" class="font-mono text-indigo-600">600 kcal</span>
+                            </div>
+                            <input type="range" id="ath_cal_exp" min="200" max="2500" step="50" value="600" oninput="document.getElementById('val_ath_cal_exp').innerText=this.value+' kcal'" class="w-full accent-indigo-600">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3 pt-2">
+                            <div>
+                                <label class="text-xs font-semibold text-slate-700">Acute 7d Load</label>
+                                <input type="number" id="ath_acute" value="1400.0" step="50" class="mt-1 w-full p-2 border rounded-xl font-mono text-xs">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-slate-700">Chronic 28d Load</label>
+                                <input type="number" id="ath_chronic" value="1000.0" step="50" class="mt-1 w-full p-2 border rounded-xl font-mono text-xs">
+                            </div>
+                        </div>
+
+                        <button onclick="runAthleticCheck()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs shadow transition">
+                            Update Fuel & Injury Index &rarr;
+                        </button>
+                    </div>
+
+                    <!-- Output Cards -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Energy Availability -->
+                            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+                                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Energy Availability (EA)</div>
+                                <div class="flex items-baseline space-x-2 mt-2">
+                                    <span id="ea_val_text" class="text-3xl font-black text-rose-600">18.00</span>
+                                    <span class="text-xs font-semibold text-slate-500">kcal/kg FFM/day</span>
+                                </div>
+                                <div id="ea_badge" class="mt-2 inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-700">
+                                    Low Fuel & Energy Deficit Alert (&lt;30)
+                                </div>
+                                <div class="text-xs text-slate-500 mt-3 pt-3 border-t">
+                                    Formula: \(\frac{\text{Food Intake } (1500) - \text{Workout Burnt } (600)}{\text{Fat Free Mass } (50.0)} = 18.0\)
+                                </div>
+                            </div>
+
+                            <!-- ACWR -->
+                            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+                                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Acute:Chronic Workload Ratio (ACWR)</div>
+                                <div class="flex items-baseline space-x-2 mt-2">
+                                    <span id="acwr_val_text" class="text-3xl font-black text-amber-600">1.40</span>
+                                    <span class="text-xs font-semibold text-slate-500">Ratio (7d/28d)</span>
+                                </div>
+                                <div id="acwr_badge" class="mt-2 inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700">
+                                    High Load Caution Zone (1.30 - 1.50)
+                                </div>
+                                <div class="text-xs text-slate-500 mt-3 pt-3 border-t">
+                                    Sweet Spot: 0.80 - 1.30 | Spike Hazard: &gt; 1.50
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Low Fuel Defense Shield Alert -->
+                        <div id="athletic_alert_box" class="bg-rose-50 border border-rose-200 rounded-2xl p-5">
+                            <h4 class="text-sm font-bold text-rose-800 flex items-center space-x-2">
+                                <span>🛡️</span>
+                                <span>Low Fuel Defense Shield Triggered</span>
+                            </h4>
+                            <p id="athletic_alert_msg" class="text-xs text-rose-700 mt-1 leading-relaxed">
+                                CRITICAL: Low Energy Availability (&lt;30 kcal/kg FFM) detected. When workout energy burnt exceeds food eaten, the body initiates period pauses (hypothalamic amenorrhea) and bone mineral loss. Increase daily carb and protein fuel by at least 600 kcal.
+                            </p>
+                        </div>
+
+                        <!-- Workload Spectrum -->
+                        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+                            <h4 class="text-xs font-bold text-slate-800 mb-2">Tim Gabbett ACWR Injury Risk Spectrum</h4>
+                            <div class="h-4 rounded-full flex overflow-hidden text-[10px] text-white font-bold text-center">
+                                <div class="w-1/4 bg-blue-400 flex items-center justify-center">Under (&lt;0.8)</div>
+                                <div class="w-2/4 bg-emerald-500 flex items-center justify-center">Sweet Spot (0.8 - 1.3)</div>
+                                <div class="w-1/4 bg-amber-500 flex items-center justify-center">Caution</div>
+                                <div class="w-1/4 bg-rose-600 flex items-center justify-center">Spike (&gt;1.5)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= PAGE 3: CYCLE & HORMONAL PATTERNS ================= -->
+            <section id="view-cycle" class="space-y-6 hidden">
+                <div class="bg-gradient-to-r from-pink-900 via-rose-900 to-indigo-950 rounded-3xl p-6 text-white shadow-lg">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-rose-500/30 px-2.5 py-1 rounded-full text-rose-200">
+                                Dual-Translation Engine &bull; Pillar 1
+                            </span>
+                            <h2 class="text-2xl font-black mt-2">Cycle & Hormonal Patterns Intelligence</h2>
+                            <p class="text-rose-200 text-xs mt-1 max-w-2xl">
+                                Plain-English body signal awareness powered by Rotterdam diagnostic criteria and localized TreeSHAP additive explanations.
+                            </p>
+                        </div>
+                        <button onclick="runEndocrineInference()" class="px-4 py-2.5 bg-white text-rose-950 font-bold rounded-xl text-xs shadow hover:bg-rose-50 transition self-start md:self-auto">
+                            Run Signal Inference &rarr;
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Plain-Language Inputs -->
+                    <div class="lg:col-span-5 bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
+                        <div class="flex justify-between items-center border-b pb-3">
+                            <h3 class="text-sm font-bold text-slate-900">Body Signal Inputs</h3>
+                            <span class="text-[10px] text-indigo-600 font-mono bg-indigo-50 px-2 py-0.5 rounded font-semibold">Plain-English UI</span>
+                        </div>
+
+                        <!-- 1. Ovulation Balance Ratio -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold">
+                                <span title="Technical: LH / FSH Ratio">Ovulation Balance Ratio</span>
+                                <span id="cycle_lh_val" class="font-mono text-indigo-600 font-bold">2.80</span>
+                            </div>
+                            <input type="range" id="cycle_lh" min="0.5" max="5.0" step="0.1" value="2.8" oninput="document.getElementById('cycle_lh_val').innerText=this.value" class="w-full mt-1 accent-indigo-600">
+                            <span class="text-[10px] text-slate-400">Hormone balance regulating cycle timing and ovulation readiness. (Normal 0.8–1.5)</span>
+                        </div>
+
+                        <!-- 2. Active Androgen Level -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold">
+                                <span title="Technical: Free Testosterone ng/dL">Active Androgen Level</span>
+                                <span id="cycle_free_t_val" class="font-mono text-indigo-600 font-bold">68.5 ng/dL</span>
+                            </div>
+                            <input type="range" id="cycle_free_t" min="10" max="120" step="0.5" value="68.5" oninput="document.getElementById('cycle_free_t_val').innerText=this.value+' ng/dL'" class="w-full mt-1 accent-indigo-600">
+                            <span class="text-[10px] text-slate-400">Regulates muscle recovery, energy, oil production, and body hair growth. (Normal &lt;45)</span>
+                        </div>
+
+                        <!-- 3. Period Timing Shift -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold">
+                                <span title="Technical: Cycle Length Variance in Days">Period Timing Shift</span>
+                                <span id="cycle_var_val" class="font-mono text-indigo-600 font-bold">12.4 days</span>
+                            </div>
+                            <input type="range" id="cycle_var" min="1" max="30" step="0.2" value="12.4" oninput="document.getElementById('cycle_var_val').innerText=this.value+' days'" class="w-full mt-1 accent-indigo-600">
+                            <span class="text-[10px] text-slate-400">Number of days your cycle shifts month-to-month. (&gt;7 days indicates oligomenorrhea)</span>
+                        </div>
+
+                        <!-- 4. Body & Facial Hair Tracker -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold">
+                                <span title="Technical: Ferriman-Gallwey Score 0-36">Body & Facial Hair Tracker</span>
+                                <span id="cycle_hair_val" class="font-mono text-indigo-600 font-bold">14 / 36</span>
+                            </div>
+                            <input type="range" id="cycle_hair" min="0" max="36" step="1" value="14" oninput="document.getElementById('cycle_hair_val').innerText=this.value+' / 36'" class="w-full mt-1 accent-indigo-600">
+                            <span class="text-[10px] text-slate-400">Simple scale rating changes in hair density on chin, chest, or belly.</span>
+                        </div>
+
+                        <button onclick="runEndocrineInference()" class="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs shadow transition">
+                            Re-analyze Pattern Similarity &rarr;
+                        </button>
+                    </div>
+
+                    <!-- Outputs & Dual View -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- PCOS Pattern Score -->
+                            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+                                <span class="text-[10px] font-bold text-slate-400 uppercase">PCOS Pattern Similarity Match</span>
+                                <div class="flex items-baseline space-x-2 mt-1">
+                                    <span id="cycle_pcos_pct" class="text-3xl font-black text-rose-600">82.5%</span>
+                                    <span id="cycle_pcos_badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-700">HIGH PATTERN MATCH</span>
+                                </div>
+                                <div class="w-full bg-slate-100 rounded-full h-2 mt-3 overflow-hidden">
+                                    <div id="cycle_pcos_bar" class="bg-rose-500 h-2 rounded-full" style="width: 82.5%"></div>
+                                </div>
+                                <span class="text-[10px] text-slate-400 block mt-2">Rotterdam Criteria Consensus Model</span>
+                            </div>
+
+                            <!-- Endometriosis Marker -->
+                            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+                                <span class="text-[10px] font-bold text-slate-400 uppercase">Endometriosis Correlation Index</span>
+                                <div class="flex items-baseline space-x-2 mt-1">
+                                    <span id="cycle_endo_pct" class="text-3xl font-black text-amber-600">31.0%</span>
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-700">MODERATE</span>
+                                </div>
+                                <div class="w-full bg-slate-100 rounded-full h-2 mt-3 overflow-hidden">
+                                    <div id="cycle_endo_bar" class="bg-amber-500 h-2 rounded-full" style="width: 31%"></div>
+                                </div>
+                                <span class="text-[10px] text-slate-400 block mt-2">Cycle variance & dysmenorrhea markers</span>
+                            </div>
+                        </div>
+
+                        <!-- Plain-English Insights Breakdown (PRD v5) -->
+                        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-3">
+                            <h4 class="text-sm font-bold text-slate-900 flex items-center justify-between">
+                                <span>Plain-English Body Insight Breakdown</span>
+                                <span class="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-mono font-bold">Self-Awareness Engine</span>
+                            </h4>
+                            <p class="text-xs text-slate-500">What specific factors are driving your body pattern score:</p>
+                            <ul id="plain_insights_list" class="space-y-2 text-xs text-slate-700">
+                                <li class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-start space-x-2">
+                                    <span class="text-indigo-600 font-bold">&bull;</span>
+                                    <span><strong>Ovulation Balance Ratio (2.80):</strong> Elevated above the 1.5 target, adding +0.320 toward PCOS pattern match.</span>
+                                </li>
+                                <li class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-start space-x-2">
+                                    <span class="text-indigo-600 font-bold">&bull;</span>
+                                    <span><strong>Active Androgen Level (68.5 ng/dL):</strong> Elevated active androgens contribute +0.210 impact on muscle recovery and oil production.</span>
+                                </li>
+                                <li class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-start space-x-2">
+                                    <span class="text-indigo-600 font-bold">&bull;</span>
+                                    <span><strong>Period Timing Shift (12.4 days):</strong> Cycle variation greater than 7 days contributes +0.145 to pattern match.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- TreeSHAP Attribution Plot -->
+                        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+                            <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2">Clinical TreeSHAP Additive Waterfall Plot</h4>
+                            <div class="h-56">
+                                <canvas id="shapChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= PAGE 4: GESTATIONAL SAFETY ENGINE ================= -->
+            <section id="view-gestational" class="space-y-6 hidden">
+                <div class="bg-gradient-to-r from-purple-950 via-indigo-900 to-slate-900 rounded-3xl p-6 text-white shadow-lg">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-purple-500/30 px-2.5 py-1 rounded-full text-purple-200">
+                                Gestational Safety &bull; Vascular Strain Index
+                            </span>
+                            <h2 class="text-2xl font-black mt-2">Maternal Hemodynamic Velocity Tracker</h2>
+                            <p class="text-purple-200 text-xs mt-1 max-w-2xl">
+                                Dynamic Gaussian Bayesian baseline updating (\(\mathcal{N}(\mu_n, \sigma_n^2)\)) for early preeclampsia vascular strain detection.
+                            </p>
+                        </div>
+                        <button onclick="runGestationalCheck()" class="px-4 py-2.5 bg-white text-purple-950 font-bold rounded-xl text-xs shadow hover:bg-purple-50 transition self-start md:self-auto">
+                            Update Vascular Strain &rarr;
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-5 bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
+                        <h3 class="text-sm font-bold text-slate-900 border-b pb-3">Maternal Hemodynamics Input</h3>
+
+                        <div>
+                            <label class="text-xs font-semibold text-slate-700">Gestational Age (Weeks)</label>
+                            <input type="number" id="gest_weeks" value="22" min="4" max="42" class="mt-1 w-full p-2.5 border rounded-xl font-mono text-xs">
+                            <span class="text-[10px] text-slate-400">2nd Trimester (Weeks 13–28) Critical Window</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="text-xs font-semibold text-slate-700">Systolic BP (mmHg)</label>
+                                <input type="number" id="gest_sys" value="134" class="mt-1 w-full p-2.5 border rounded-xl font-mono text-xs">
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-slate-700">Diastolic BP (mmHg)</label>
+                                <input type="number" id="gest_dia" value="88" class="mt-1 w-full p-2.5 border rounded-xl font-mono text-xs">
+                            </div>
+                        </div>
+
+                        <button onclick="runGestationalCheck()" class="w-full py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-xs shadow transition">
+                            Track Bayesian MAP Velocity &rarr;
+                        </button>
+                    </div>
+
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+                                <span class="text-[10px] font-bold text-slate-400 uppercase">Vascular Strain Index (MAP)</span>
+                                <div class="text-3xl font-black text-rose-600 mt-1">
+                                    <span id="gest_current_map">103.33</span> <span class="text-xs text-slate-500 font-normal">mmHg</span>
+                                </div>
+                                <div id="gest_risk_badge" class="mt-2 inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-700">
+                                    HIGH VASCULAR STRAIN
+                                </div>
+                                <span class="text-[10px] text-slate-400 block mt-2">Clinical threshold: &ge;90 mmHg in 2nd trimester</span>
+                            </div>
+
+                            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+                                <span class="text-[10px] font-bold text-slate-400 uppercase">Bayesian Baseline Tracking</span>
+                                <div class="text-3xl font-black text-indigo-600 mt-1">
+                                    <span id="gest_baseline_map">83.02</span> <span class="text-xs text-slate-500 font-normal">mmHg (\(\mu_n\))</span>
+                                </div>
+                                <div class="text-xs font-bold text-rose-600 mt-2">
+                                    Velocity Delta: <span id="gest_delta_text">+20.31 mmHg</span>
+                                </div>
+                                <span class="text-[10px] text-slate-400 block mt-2">Conjugate prior \(\mathcal{N}(82, 6.0^2)\)</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-rose-50 border border-rose-200 rounded-2xl p-5">
+                            <h4 class="text-sm font-bold text-rose-800">ACOG Clinical Guidance Alert</h4>
+                            <p id="gest_recommendation_text" class="text-xs text-rose-700 mt-1 leading-relaxed">
+                                Elevated Mean Arterial Pressure (103.33 mmHg &ge; 90 mmHg threshold at 22 weeks). Accelerating MAP velocity detected (+20.31 mmHg above personalized baseline). Clinical lab evaluation for proteinuria and uterine artery Doppler ultrasound recommended.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= PAGE 5: PEER COMMUNITY HUB ================= -->
+            <section id="view-community" class="space-y-6 hidden">
+                <div class="bg-gradient-to-r from-indigo-900 via-slate-900 to-purple-900 rounded-3xl p-6 text-white shadow-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider bg-indigo-500/30 px-2.5 py-1 rounded-full text-indigo-200">
+                            Safe Space &bull; Peer Support
+                        </span>
+                        <h2 class="text-2xl font-black mt-2">Athlete Peer Community Hub</h2>
+                        <p class="text-indigo-200 text-xs mt-1 max-w-xl">
+                            Connect with active women, share recovery advice, discuss period communication strategies with coaches, and post anonymously.
+                        </p>
+                    </div>
+                    <button onclick="openCommunityModal()" class="px-4 py-2.5 bg-white text-indigo-950 font-bold rounded-xl text-xs shadow hover:bg-indigo-50 transition flex items-center space-x-2 self-start sm:self-auto">
+                        <span>+ Ask or Share Advice</span>
+                    </button>
+                </div>
+
+                <!-- Topic Circle Filters -->
+                <div class="flex space-x-2 overflow-x-auto pb-2">
+                    <button onclick="filterCircle('all')" id="circle-all" class="circle-btn px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm shrink-0">
+                        All Topic Circles
+                    </button>
+                    <button onclick="filterCircle('Athletic Amenorrhea & REDs')" id="circle-reds" class="circle-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:text-slate-900 border border-slate-200 shrink-0">
+                        ⚡ Athletic Amenorrhea & REDs
+                    </button>
+                    <button onclick="filterCircle('PCOS Fitness & Nutrition')" id="circle-pcos" class="circle-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:text-slate-900 border border-slate-200 shrink-0">
+                        🌸 PCOS Fitness & Nutrition
+                    </button>
+                    <button onclick="filterCircle('Maternal Care')" id="circle-maternal" class="circle-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:text-slate-900 border border-slate-200 shrink-0">
+                        🤰 Maternal Care
+                    </button>
+                    <button onclick="filterCircle('General Wellness')" id="circle-wellness" class="circle-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:text-slate-900 border border-slate-200 shrink-0">
+                        🌱 General Wellness
+                    </button>
+                </div>
+
+                <!-- Posts Feed -->
+                <div id="community_posts_container" class="space-y-4">
+                    <!-- Populated dynamically via fetch -->
+                </div>
+            </section>
+
+            <!-- ================= PAGE 6: DOCTOR BRIEF EXPORT (FHIR R4) ================= -->
+            <section id="view-doctor" class="space-y-6 hidden">
+                <div class="bg-gradient-to-r from-slate-900 to-indigo-950 rounded-3xl p-6 text-white shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider bg-indigo-500/30 px-2.5 py-1 rounded-full text-indigo-200">
+                            Clinical Handoff &bull; HL7 FHIR Release 4
+                        </span>
+                        <h2 class="text-2xl font-black mt-2">Doctor Brief & Clinical Export Station</h2>
+                        <p class="text-slate-300 text-xs mt-1 max-w-2xl">
+                            Under-the-hood auto-formatting converts daily logs into standardized medical briefs with LOINC vital signs, SNOMED-CT clinical codes, and TreeSHAP attribution payloads.
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="openPrintableReport()" class="px-4 py-2.5 bg-white text-slate-900 font-bold rounded-xl text-xs shadow hover:bg-slate-100 transition">
+                            Printable Medical Brief &rarr;
+                        </button>
+                        <button onclick="downloadFhirBundle()" class="px-4 py-2.5 bg-indigo-600 text-white font-bold rounded-xl text-xs shadow hover:bg-indigo-700 transition">
+                            Download FHIR JSON
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dual View Toggle: Simple Summary vs Clinical View -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between border-b pb-4">
+                        <div class="flex items-center space-x-2">
+                            <button onclick="toggleDoctorView('simple')" id="btn-view-simple" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white shadow-sm">
+                                My Simple Summary
+                            </button>
+                            <button onclick="toggleDoctorView('clinical')" id="btn-view-clinical" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:text-slate-900">
+                                Clinical View (HL7 FHIR & LOINC)
+                            </button>
+                        </div>
+                        <span class="text-xs text-slate-400 font-mono">Patient: <strong id="doc_patient_name">Sarah Jenkins</strong></span>
+                    </div>
+
+                    <!-- Simple Summary Pane -->
+                    <div id="pane-simple-summary" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                                <div class="text-[10px] text-slate-400 uppercase font-bold">Fuel Availability Status</div>
+                                <div class="text-lg font-black text-rose-600 mt-1">Critical Low Fuel (&lt;30)</div>
+                                <div class="text-[11px] text-slate-500 mt-1">EA = 18.0 kcal/kg FFM/day</div>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                                <div class="text-[10px] text-slate-400 uppercase font-bold">Cycle Pattern</div>
+                                <div class="text-lg font-black text-amber-600 mt-1">Period Pause Risk</div>
+                                <div class="text-[11px] text-slate-500 mt-1">Workload Spike (ACWR 1.40)</div>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                                <div class="text-[10px] text-slate-400 uppercase font-bold">Maternal MAP</div>
+                                <div class="text-lg font-black text-slate-800 mt-1">Normotensive</div>
+                                <div class="text-[11px] text-slate-500 mt-1">Baselines in safe bounds</div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-indigo-50/50 rounded-xl border border-indigo-100 text-xs text-indigo-950 space-y-1">
+                            <strong class="block text-indigo-900">Summary for your Doctor or Physio:</strong>
+                            <p>
+                                "Athlete presents with an Acute:Chronic Workload Ratio of 1.40 and Energy Availability of 18.0 kcal/kg FFM, falling below the 30 kcal/kg safety threshold. Symptoms of secondary amenorrhea and elevated perceived exertion observed. Recommend nutritional refueling (+650 kcal/day) and bone density screening."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Clinical / FHIR Pane -->
+                    <div id="pane-clinical-summary" class="space-y-4 hidden">
+                        <div class="text-xs text-slate-600 font-mono">
+                            <table class="w-full text-left border-collapse">
+                                <thead class="bg-slate-50 text-[10px] text-slate-500 uppercase">
+                                    <tr>
+                                        <th class="p-2 border-b">Biometric Signal</th>
+                                        <th class="p-2 border-b">Clinical Code</th>
+                                        <th class="p-2 border-b">Standard System</th>
+                                        <th class="p-2 border-b">Observed Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100 text-xs">
+                                    <tr>
+                                        <td class="p-2 font-semibold">Mean Arterial Pressure (MAP)</td>
+                                        <td class="p-2 text-indigo-600 font-bold">8478-0</td>
+                                        <td class="p-2 text-slate-500">LOINC</td>
+                                        <td class="p-2 font-bold">83.33 mmHg</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 font-semibold">Resting Heart Rate</td>
+                                        <td class="p-2 text-indigo-600 font-bold">8867-4</td>
+                                        <td class="p-2 text-slate-500">LOINC</td>
+                                        <td class="p-2 font-bold">46.0 /min</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 font-semibold">HRV RMSSD</td>
+                                        <td class="p-2 text-indigo-600 font-bold">80404-7</td>
+                                        <td class="p-2 text-slate-500">LOINC</td>
+                                        <td class="p-2 font-bold">75.0 ms</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 font-semibold">Hypothalamic Amenorrhea</td>
+                                        <td class="p-2 text-indigo-600 font-bold">14302001</td>
+                                        <td class="p-2 text-slate-500">SNOMED-CT</td>
+                                        <td class="p-2 font-bold text-rose-600">Active Alert</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- JSON Viewer -->
+                        <div class="bg-slate-900 rounded-xl p-4 border border-slate-800">
+                            <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
+                                <span class="font-mono text-emerald-400">HL7 FHIR R4 Bundle JSON Payload</span>
+                                <button onclick="copyFhir()" class="hover:text-white">Copy JSON</button>
+                            </div>
+                            <pre id="fhir_json_code" class="text-xs text-emerald-300 font-mono overflow-x-auto max-h-64 leading-relaxed">
+Loading FHIR Payload...
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ================= MODAL: NEW COMMUNITY POST ================= -->
+    <div id="communityModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200">
+            <div class="flex justify-between items-center border-b pb-3 mb-4">
+                <div>
+                    <h3 class="text-base font-bold text-slate-900">Post in Athlete Community Hub</h3>
+                    <p class="text-xs text-slate-500">Ask questions, share advice, or discuss training with peers</p>
+                </div>
+                <button onclick="closeCommunityModal()" class="text-slate-400 hover:text-slate-600 font-bold text-lg">&times;</button>
+            </div>
+
+            <form onsubmit="submitCommunityPost(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="font-semibold text-[#9CA3AF]">Topic Circle</label>
+                    <select id="post_circle" class="mt-1 w-full p-2 bg-[#090D16] border border-[#1F2937] rounded-xl text-[#F9FAFB]">
+                        <option value="Athletic Amenorrhea & REDs">⚡ Athletic Amenorrhea &amp; REDs</option>
+                        <option value="PCOS Fitness & Nutrition">🌸 PCOS Fitness &amp; Nutrition</option>
+                    <label class="font-semibold text-slate-700">Topic Circle</label>
+                    <select id="post_circle" class="mt-1 w-full p-2 border rounded-lg bg-white">
+                        <option value="Athletic Amenorrhea & REDs">⚡ Athletic Amenorrhea & REDs</option>
+                        <option value="PCOS Fitness & Nutrition">🌸 PCOS Fitness & Nutrition</option>
+                        <option value="Maternal Care">🤰 Maternal Care</option>
+                        <option value="General Wellness">🌱 General Wellness</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="font-semibold text-[#9CA3AF]">Discussion Title</label>
+                    <input type="text" id="post_title" required placeholder="e.g. How to discuss workload limits with a male coach" class="mt-1 w-full p-2 bg-[#090D16] border border-[#1F2937] rounded-xl text-[#F9FAFB]">
+                </div>
+
+                <div>
+                    <label class="font-semibold text-[#9CA3AF]">Your Question or Experience</label>
+                    <textarea id="post_content" required rows="4" placeholder="Share your experience or ask the community..." class="mt-1 w-full p-2 bg-[#090D16] border border-[#1F2937] rounded-xl text-[#F9FAFB]"></textarea>
+                </div>
+
+                <!-- Anonymous Toggle (PRD v9 FR-1.5) -->
+                <div class="p-3 bg-[#090D16] rounded-xl border border-[#1F2937] flex items-center justify-between">
+                    <div>
+                        <span class="font-bold text-[#F9FAFB] block">Post Anonymously</span>
+                        <span class="text-[11px] text-[#9CA3AF]">Hides your name and displays "Anonymous Athlete"</span>
+                    </div>
+                    <input type="checkbox" id="post_anonymous" class="w-4 h-4 accent-[#06B6D4] rounded">
+                </div>
+
+                <div class="pt-2 flex justify-end space-x-2">
+                    <button type="button" onclick="closeCommunityModal()" class="px-4 py-2 border border-[#1F2937] rounded-xl text-[#9CA3AF] hover:bg-[#1F2937] font-semibold">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-[#06B6D4] hover:bg-cyan-400 text-slate-950 rounded-xl font-bold shadow">Publish Post</button>
+                    <label class="font-semibold text-slate-700">Discussion Title</label>
+                    <input type="text" id="post_title" required placeholder="e.g. How to discuss workload limits with a male coach" class="mt-1 w-full p-2 border rounded-lg font-sans">
+                </div>
+
+                <div>
+                    <label class="font-semibold text-slate-700">Your Question or Experience</label>
+                    <textarea id="post_content" required rows="4" placeholder="Share your experience or ask the community..." class="mt-1 w-full p-2 border rounded-lg font-sans"></textarea>
+                </div>
+
+                <!-- Anonymous Toggle (PRD v5 FR-1.5) -->
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between">
+                    <div>
+                        <span class="font-bold text-slate-800 block">Post Anonymously</span>
+                        <span class="text-[11px] text-slate-500">Hides your name and displays "Anonymous Athlete"</span>
+                    </div>
+                    <input type="checkbox" id="post_anonymous" class="w-4 h-4 accent-indigo-600 rounded">
+                </div>
+
+                <div class="pt-2 flex justify-end space-x-2">
+                    <button type="button" onclick="closeCommunityModal()" class="px-4 py-2 border rounded-lg text-slate-600 hover:bg-slate-50 font-semibold">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold shadow">Publish Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= JAVASCRIPT APP LOGIC (PRD v9 IMPLEMENTATION) ================= -->
+    <script>
+        let currentUserId = "223e4567-e89b-12d3-a456-426614174001"; // Default Sarah Jenkins
+        let currentAthleteName = "Sarah Jenkins";
+        let currentWorkspace = "gateway";
+        let shapChartInstance = null;
+        let selectedCircle = "all";
+
+        // ================= 2-LAYER FLOW HANDLERS =================
+        function signIn() {
+            document.getElementById('layer-1').classList.add('hidden');
+            document.getElementById('authenticated-app').classList.remove('hidden');
+            switchView('gateway');
+            updateGatewayHeader();
+        }
+
+        function signOut() {
+            document.getElementById('authenticated-app').classList.add('hidden');
+            document.getElementById('layer-1').classList.remove('hidden');
+        }
+
+        function updateGatewayHeader() {
+            const names = {
+                "223e4567-e89b-12d3-a456-426614174001": "Sarah Jenkins (Distance Runner / RED-S)",
+                "123e4567-e89b-12d3-a456-426614174000": "Maya Patel (Cricket Bowler / PCOS)",
+                "323e4567-e89b-12d3-a456-426614174002": "Priya Sharma (Gestational 22w)"
+            };
+            currentAthleteName = names[currentUserId] || "Active Athlete";
+            const el = document.getElementById('gateway-welcome-name');
+            if (el) el.innerText = currentAthleteName.split(' ')[0] + ' ' + currentAthleteName.split(' ')[1];
+        }
+
+        // ================= NAVIGATION SWITCHER =================
+        function switchView(viewId) {
+            currentWorkspace = viewId;
+    <!-- ================= JAVASCRIPT APP LOGIC ================= -->
+    <script>
+        let currentUserId = "223e4567-e89b-12d3-a456-426614174001"; // Default Sarah Jenkins
+        let shapChartInstance = null;
+        let selectedCircle = "all";
+
+        // Navigation Switcher
+        function switchView(viewId) {
+            const views = ['gateway', 'energy', 'cycle', 'gestational', 'community', 'doctor'];
+            views.forEach(v => {
+                const el = document.getElementById('view-' + v);
+                if (el) el.classList.add('hidden');
+                const nav = document.getElementById('nav-' + v);
+                if (nav) nav.className = 'w-full px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center transition sidebar-inactive';
+                if (nav) nav.className = 'w-full px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center space-x-3 transition sidebar-inactive';
+            });
+
+            const activeView = document.getElementById('view-' + viewId);
+            if (activeView) activeView.classList.remove('hidden');
+
+            const activeNav = document.getElementById('nav-' + viewId);
+            if (activeNav) activeNav.className = 'w-full px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center transition sidebar-active';
+
+            const mobileSelect = document.getElementById('mobileNavSelect');
+            if (mobileSelect) mobileSelect.value = viewId;
+            if (activeNav) activeNav.className = 'w-full px-3 py-2.5 rounded-xl text-xs font-semibold flex items-center space-x-3 transition sidebar-active';
+
+            if (viewId === 'community') {
+                loadCommunityPosts();
+            } else if (viewId === 'doctor') {
+                loadFhirBundle();
+            } else if (viewId === 'cycle') {
+                runEndocrineInference();
+            } else if (viewId === 'energy') {
+                runAthleticCheck();
+            } else if (viewId === 'gestational') {
+                runGestationalCheck();
+            }
+        }
+
+        // ================= ATHLETE PROFILE SWITCHER =================
+            }
+        }
+
+        // Change Active Athlete Profile
+        function changePatient(newId) {
+            currentUserId = newId;
+            const names = {
+                "223e4567-e89b-12d3-a456-426614174001": "Sarah Jenkins (Distance Runner / RED-S)",
+                "123e4567-e89b-12d3-a456-426614174000": "Maya Patel (Cricket Bowler / PCOS)",
+                "323e4567-e89b-12d3-a456-426614174002": "Priya Sharma (Gestational 22w)"
+            };
+            document.getElementById('doc_patient_name').innerText = names[newId] || "Athlete Member";
+            updateGatewayHeader();
+
+            if (newId === "223e4567-e89b-12d3-a456-426614174001") {
+                switchView('energy');
+            } else if (newId === "123e4567-e89b-12d3-a456-426614174000") {
+                switchView('cycle');
+            } else if (newId === "323e4567-e89b-12d3-a456-426614174002") {
+                switchView('gestational');
+            }
+            loadFhirBundle();
+        }
+
+        // ================= CYCLE 3-QUESTION WIZARD LOGIC (PRD v9 Section 3.1) =================
+        function openCycleWizard() {
+            document.getElementById('cycleWizardModal').classList.remove('hidden');
+        }
+
+        function closeCycleWizard() {
+            document.getElementById('cycleWizardModal').classList.add('hidden');
+        }
+
+        function submitCycleWizard(e) {
+            e.preventDefault();
+            const timing = document.querySelector('input[name="wiz_cycle_timing"]:checked').value;
+            const skin = document.querySelector('input[name="wiz_cycle_skin"]:checked').value;
+            const intensity = document.querySelector('input[name="wiz_cycle_intensity"]:checked').value;
+
+            // Auto-calculate scores per PRD v9 Section 3.1
+            let calculatedLh = 1.2; // Balanced default
+            let calculatedFreeT = 32.0;
+            let calculatedVar = 2.0;
+            let calculatedHair = 6;
+
+            if (timing === "skipped") {
+                calculatedLh += 1.2; // -> 2.4 Shifted
+                calculatedVar = 14.5;
+            } else if (timing === "late5_10") {
+                calculatedLh += 0.6; // -> 1.8
+                calculatedVar = 8.0;
+            }
+
+            if (skin === "high") {
+                calculatedFreeT = 72.0;
+                calculatedHair += 8;
+            } else if (skin === "mild") {
+                calculatedFreeT = 52.0;
+                calculatedHair += 4;
+            }
+
+            if (intensity === "intense") {
+                calculatedLh += 0.2;
+            }
+
+            // Update UI sliders
+            document.getElementById('cycle_lh').value = calculatedLh.toFixed(1);
+            document.getElementById('cycle_lh_val').innerText = calculatedLh.toFixed(2);
+            document.getElementById('cycle_free_t').value = calculatedFreeT.toFixed(1);
+            document.getElementById('cycle_free_t_val').innerText = calculatedFreeT.toFixed(1) + ' ng/dL';
+            document.getElementById('cycle_var').value = calculatedVar.toFixed(1);
+            document.getElementById('cycle_var_val').innerText = calculatedVar.toFixed(1) + ' days';
+            document.getElementById('cycle_hair').value = calculatedHair;
+            document.getElementById('cycle_hair_val').innerText = calculatedHair + ' / 36';
+
+            closeCycleWizard();
+            runEndocrineInference();
+        }
+
+        // ================= ENERGY 3-QUESTION WIZARD LOGIC (PRD v9 Section 3.2) =================
+        function openEnergyWizard() {
+            document.getElementById('energyWizardModal').classList.remove('hidden');
+        }
+
+        function closeEnergyWizard() {
+            document.getElementById('energyWizardModal').classList.add('hidden');
+        }
+
+        function submitEnergyWizard(e) {
+            e.preventDefault();
+            const legs = document.querySelector('input[name="wiz_ath_legs"]:checked').value;
+            const meals = document.querySelector('input[name="wiz_ath_meals"]:checked').value;
+            const sleep = document.querySelector('input[name="wiz_ath_sleep"]:checked').value;
+
+            // Auto-calculate Daily Fuel Index (Energy Availability) & Workload
+            let calIn = 2400.0;
+            let calExp = 550.0;
+            let acute = 1100.0;
+            let chronic = 1050.0;
+
+            if (meals === "skipped") {
+                calIn = 1400.0;
+            } else if (meals === "low") {
+                calIn = 1800.0;
+            }
+
+            if (legs === "exhausted") {
+                calExp = 750.0;
+                acute = 1500.0;
+            } else if (legs === "heavy") {
+                calExp = 650.0;
+                acute = 1350.0;
+            }
+
+            if (sleep === "poor") {
+                calExp += 50.0;
+            }
+
+            // Update UI sliders
+            document.getElementById('ath_cal_in').value = calIn;
+            document.getElementById('val_ath_cal_in').innerText = calIn + ' kcal';
+            document.getElementById('ath_cal_exp').value = calExp;
+            document.getElementById('val_ath_cal_exp').innerText = calExp + ' kcal';
+            document.getElementById('ath_acute').value = acute;
+            document.getElementById('ath_chronic').value = chronic;
+
+            closeEnergyWizard();
+            runAthleticCheck();
+        }
+
+        // ================= ATHLETIC RED-S LOGIC =================
+        async function runAthleticCheck() {
+            const payload = {
+                user_id: currentUserId,
+                fat_free_mass_kg: parseFloat(document.getElementById('ath_ffm').value),
+                caloric_intake_kcal: parseFloat(document.getElementById('ath_cal_in').value),
+                exercise_energy_expenditure_kcal: parseFloat(document.getElementById('ath_cal_exp').value),
+                acute_7d_workload: parseFloat(document.getElementById('ath_acute').value),
+                chronic_28d_workload: parseFloat(document.getElementById('ath_chronic').value)
+            };
+
+            try {
+                const res = await fetch('/api/v1/analytics/athletic/reds-check', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                
+                document.getElementById('ea_val_text').innerText = data.energy_availability_kcal_ffm.toFixed(2);
+                document.getElementById('acwr_val_text').innerText = data.acwr_index.toFixed(2);
+                
+                const eaBadge = document.getElementById('ea_badge');
+                const alertBox = document.getElementById('athletic_alert_box');
+
+                if (data.reds_risk_flag) {
+                    eaBadge.className = 'mt-2 inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-rose-950 text-[#F43F5E] border border-[#F43F5E]/30';
+                    eaBadge.innerText = 'Low Fuel Energy Deficit Alert (<30)';
+                    alertBox.classList.remove('hidden');
+                } else if (data.energy_availability_kcal_ffm < 45.0) {
+                    eaBadge.className = 'mt-2 inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-amber-950 text-amber-400 border border-amber-500/30';
+                    eaBadge.innerText = 'Subclinical Fuel Warning (30-45)';
+                    alertBox.classList.add('hidden');
+                } else {
+                    eaBadge.className = 'mt-2 inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-950 text-[#10B981] border border-[#10B981]/30';
+                    eaBadge.innerText = 'Optimal Fuel Availability (>45)';
+                    alertBox.classList.add('hidden');
+                }
+
+                document.getElementById('athletic_alert_msg').innerText = data.warning_message;
+
+                // Sync gateway badge
+                const gwFuel = document.getElementById('gateway-stat-fuel');
+                if (gwFuel) {
+                    gwFuel.innerText = data.energy_availability_kcal_ffm.toFixed(1) + ' kcal/kg ' + (data.reds_risk_flag ? '(Deficit)' : '(Optimal)');
+                    gwFuel.className = 'font-bold ' + (data.reds_risk_flag ? 'text-[#F43F5E]' : 'text-[#10B981]');
+                }
+                if (data.reds_risk_flag) {
+                    eaBadge.className = 'mt-2 inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-700';
+                    eaBadge.innerText = 'Low Fuel & Energy Deficit Alert (<30)';
+                } else if (data.energy_availability_kcal_ffm < 45.0) {
+                    eaBadge.className = 'mt-2 inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700';
+                    eaBadge.innerText = 'Subclinical Fuel Warning (30-45)';
+                } else {
+                    eaBadge.className = 'mt-2 inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700';
+                    eaBadge.innerText = 'Optimal Fuel Availability (>45)';
+                }
+
+                document.getElementById('athletic_alert_msg').innerText = data.warning_message;
+            } catch (err) {
+                console.error("Athletic check failed:", err);
+            }
+        }
+
+        // ================= CYCLE & HORMONAL PATTERNS =================
+        async function runEndocrineInference() {
+            const payload = {
+                user_id: currentUserId,
+                lh_fsh_ratio: parseFloat(document.getElementById('cycle_lh').value),
+                free_testosterone_ng_dl: parseFloat(document.getElementById('cycle_free_t').value),
+                cycle_length_variance_days: parseFloat(document.getElementById('cycle_var').value),
+                hirsutism_score: parseInt(document.getElementById('cycle_hair').value),
+                bmi: 23.2
+            };
+
+            try {
+                const res = await fetch('/api/v1/analytics/endocrine/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                
+                const pcosPct = (data.pcos_risk_score * 100).toFixed(1);
+                const endoPct = (data.endometriosis_risk_score * 100).toFixed(1);
+
+                document.getElementById('cycle_pcos_pct').innerText = pcosPct + '%';
+                document.getElementById('cycle_pcos_bar').style.width = pcosPct + '%';
+                document.getElementById('cycle_pcos_badge').innerText = data.risk_classification.replace(/_/g, ' ');
+
+                document.getElementById('cycle_endo_pct').innerText = endoPct + '%';
+                document.getElementById('cycle_endo_bar').style.width = endoPct + '%';
+
+                // Render Plain-English Insights List (PRD v9 Section 6)
+                const list = document.getElementById('plain_insights_list');
+                if (data.plain_english_insights && data.plain_english_insights.length > 0) {
+                    list.innerHTML = data.plain_english_insights.map(txt => `
+                        <li class="p-3 bg-[#090D16] rounded-xl border border-[#1F2937] flex items-start space-x-2">
+                            <span class="text-[#06B6D4] font-bold">&bull;</span>
+                // Render Plain-English Insights List (PRD v5)
+                const list = document.getElementById('plain_insights_list');
+                if (data.plain_english_insights && data.plain_english_insights.length > 0) {
+                    list.innerHTML = data.plain_english_insights.map(txt => `
+                        <li class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-start space-x-2">
+                            <span class="text-indigo-600 font-bold">&bull;</span>
+                            <span>${txt}</span>
+                        </li>
+                    `).join('');
+                }
+
+                // Render TreeSHAP Chart in Dark Palette
+                // Render TreeSHAP Chart
+                if (typeof Chart !== 'undefined') {
+                    if (shapChartInstance) shapChartInstance.destroy();
+                    const ctx = document.getElementById('shapChart').getContext('2d');
+                    const labels = data.shap_attributions.map(a => a.feature);
+                    const values = data.shap_attributions.map(a => a.shap_value);
+                    const colors = values.map(v => v > 0 ? 'rgba(244, 63, 94, 0.85)' : 'rgba(16, 185, 129, 0.85)');
+                    const colors = values.map(v => v > 0 ? 'rgba(239, 68, 68, 0.85)' : 'rgba(16, 185, 129, 0.85)');
+
+                    shapChartInstance = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'TreeSHAP Attribution (Additive Impact)',
+                                data: values,
+                                backgroundColor: colors,
+                                borderRadius: 6
+                            }]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false }
+                            },
+                            scales: {
+                                x: {
+                                    grid: { color: '#1F2937' },
+                                    ticks: { color: '#9CA3AF' },
+                                    title: { display: true, text: 'SHAP Value (Impact on Pattern Match)', color: '#9CA3AF' }
+                                },
+                                y: {
+                                    grid: { display: false },
+                                    ticks: { color: '#F9FAFB' }
+                                }
+                            plugins: { legend: { display: false } },
+                            scales: {
+                                x: { grid: { color: '#f1f5f9' }, title: { display: true, text: 'SHAP Value (Impact on Pattern Match)' } },
+                                y: { grid: { display: false } }
+                            }
+                        }
+                    });
+                }
+
+                // Sync gateway badge
+                const gwCycle = document.getElementById('gateway-stat-cycle');
+                if (gwCycle) {
+                    gwCycle.innerText = payload.cycle_length_variance_days.toFixed(1) + ' Days Shift';
+                }
+            } catch (err) {
+                console.error("Endocrine inference error:", err);
+            }
+        }
+
+        // ================= GESTATIONAL MAP CHECK =================
+        async function runGestationalCheck() {
+            const payload = {
+                user_id: currentUserId,
+                gestational_age_weeks: parseInt(document.getElementById('gest_weeks').value),
+                systolic_bp: parseFloat(document.getElementById('gest_sys').value),
+                diastolic_bp: parseFloat(document.getElementById('gest_dia').value)
+            };
+
+            try {
+                const res = await fetch('/api/v1/analytics/gestational/map-check', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                
+                document.getElementById('gest_current_map').innerText = data.current_map.toFixed(2);
+                document.getElementById('gest_baseline_map').innerText = data.bayesian_baseline_map.toFixed(2);
+                document.getElementById('gest_delta_text').innerText = (data.map_delta_from_baseline >= 0 ? '+' : '') + data.map_delta_from_baseline.toFixed(2) + ' mmHg';
+                document.getElementById('gest_recommendation_text').innerText = data.recommendation;
+                
+                const badge = document.getElementById('gest_risk_badge');
+                badge.innerText = data.preeclampsia_risk_classification.replace(/_/g, ' ');
+
+                // Sync gateway badge
+                const gwMap = document.getElementById('gateway-stat-map');
+                if (gwMap) {
+                    gwMap.innerText = data.current_map.toFixed(1) + ' mmHg (' + data.preeclampsia_risk_classification.replace(/_/g, ' ') + ')';
+                }
+            } catch (err) {
+                console.error("Gestational check failed:", err);
+            }
+        }
+
+        // ================= COMMUNITY HUB =================
+        async function loadCommunityPosts() {
+            try {
+                let url = '/api/v1/community/posts';
+                if (selectedCircle && selectedCircle !== 'all') {
+                    url += `?topic_circle=${encodeURIComponent(selectedCircle)}`;
+                }
+                const res = await fetch(url);
+                const posts = await res.json();
+
+                const container = document.getElementById('community_posts_container');
+                container.innerHTML = '';
+
+                if (posts.length === 0) {
+                    container.innerHTML = `<div class="p-8 text-center text-[#9CA3AF] text-xs">No posts yet in this circle. Be the first to share!</div>`;
+                    container.innerHTML = `<div class="p-8 text-center text-slate-400 text-xs">No posts yet in this circle. Be the first to share!</div>`;
+                    return;
+                }
+
+                posts.forEach(p => {
+                    const card = document.createElement('div');
+                    card.className = "bg-[#111827] p-6 rounded-2xl border border-[#1F2937] shadow-sm space-y-3";
+                    card.className = "bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3";
+                    
+                    const timeAgo = new Date(p.created_at).toLocaleDateString();
+                    card.innerHTML = `
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-cyan-950 text-[#06B6D4] border border-[#06B6D4]/30">
+                                    ${p.topic_circle}
+                                </span>
+                                ${p.is_anonymous ? '<span class="text-[10px] font-semibold text-[#9CA3AF] bg-[#090D16] border border-[#1F2937] px-2 py-0.5 rounded-full">Anonymous Post</span>' : '<span class="text-[10px] font-semibold text-[#10B981] bg-emerald-950 border border-[#10B981]/30 px-2 py-0.5 rounded-full">Verified Peer</span>'}
+                            </div>
+                            <span class="text-[10px] text-[#9CA3AF]">${timeAgo}</span>
+                        </div>
+                        <h3 class="text-sm font-bold text-[#F9FAFB]">${p.title}</h3>
+                        <p class="text-xs text-[#9CA3AF] leading-relaxed">${p.content}</p>
+                        <div class="pt-2 border-t border-[#1F2937] flex items-center justify-between text-xs text-[#9CA3AF]">
+                            <span class="font-semibold text-[#F9FAFB]">By: ${p.author_display_name}</span>
+                            <button onclick="upvotePost('${p.post_id}')" class="flex items-center space-x-1.5 px-3 py-1 bg-[#090D16] hover:bg-[#1F2937] hover:text-[#06B6D4] rounded-lg border border-[#1F2937] transition font-bold text-[#F9FAFB]">
+                                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-50 text-indigo-700">
+                                    ${p.topic_circle}
+                                </span>
+                                ${p.is_anonymous ? '<span class="text-[10px] font-semibold text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full">Anonymous Post</span>' : '<span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">Verified Peer</span>'}
+                            </div>
+                            <span class="text-[10px] text-slate-400">${timeAgo}</span>
+                        </div>
+                        <h3 class="text-sm font-bold text-slate-900">${p.title}</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">${p.content}</p>
+                        <div class="pt-2 border-t flex items-center justify-between text-xs text-slate-500">
+                            <span class="font-semibold text-slate-700">By: ${p.author_display_name}</span>
+                            <button onclick="upvotePost('${p.post_id}')" class="flex items-center space-x-1.5 px-3 py-1 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg border border-slate-200 transition font-bold text-slate-700">
+                                <span>👍</span>
+                                <span id="upvote-count-${p.post_id}">${p.upvotes}</span>
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (err) {
+                console.error("Community load error:", err);
+            }
+        }
+
+        function filterCircle(circle) {
+            selectedCircle = circle;
+            document.querySelectorAll('.circle-btn').forEach(btn => {
+                btn.className = 'circle-btn px-4 py-2 rounded-xl text-xs font-semibold bg-[#111827] text-[#9CA3AF] hover:text-[#F9FAFB] border border-[#1F2937] shrink-0';
+            });
+            if (circle === 'all') {
+                document.getElementById('circle-all').className = 'circle-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#06B6D4] text-slate-950 shadow-sm shrink-0';
+            } else if (circle === 'Athletic Amenorrhea & REDs') {
+                document.getElementById('circle-reds').className = 'circle-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#06B6D4] text-slate-950 shadow-sm shrink-0';
+            } else if (circle === 'PCOS Fitness & Nutrition') {
+                document.getElementById('circle-pcos').className = 'circle-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#06B6D4] text-slate-950 shadow-sm shrink-0';
+            } else if (circle === 'Maternal Care') {
+                document.getElementById('circle-maternal').className = 'circle-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#06B6D4] text-slate-950 shadow-sm shrink-0';
+            } else {
+                document.getElementById('circle-wellness').className = 'circle-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#06B6D4] text-slate-950 shadow-sm shrink-0';
+                btn.className = 'circle-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white text-slate-600 hover:text-slate-900 border border-slate-200 shrink-0';
+            });
+            if (circle === 'all') {
+                document.getElementById('circle-all').className = 'circle-btn px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm shrink-0';
+            } else if (circle === 'Athletic Amenorrhea & REDs') {
+                document.getElementById('circle-reds').className = 'circle-btn px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm shrink-0';
+            } else if (circle === 'PCOS Fitness & Nutrition') {
+                document.getElementById('circle-pcos').className = 'circle-btn px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm shrink-0';
+            } else if (circle === 'Maternal Care') {
+                document.getElementById('circle-maternal').className = 'circle-btn px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm shrink-0';
+            } else {
+                document.getElementById('circle-wellness').className = 'circle-btn px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm shrink-0';
+            }
+            loadCommunityPosts();
+        }
+
+        async function upvotePost(postId) {
+            try {
+                const res = await fetch(`/api/v1/community/posts/${postId}/upvote`, { method: 'POST' });
+                const data = await res.json();
+                const el = document.getElementById(`upvote-count-${postId}`);
+                if (el) el.innerText = data.upvotes;
+            } catch (err) {
+                console.error("Upvote error:", err);
+            }
+        }
+
+        function openCommunityModal() {
+            document.getElementById('communityModal').classList.remove('hidden');
+        }
+        function closeCommunityModal() {
+            document.getElementById('communityModal').classList.add('hidden');
+        }
+
+        async function submitCommunityPost(e) {
+            e.preventDefault();
+            const isAnon = document.getElementById('post_anonymous').checked;
+            const payload = {
+                user_id: currentUserId,
+                topic_circle: document.getElementById('post_circle').value,
+                title: document.getElementById('post_title').value,
+                content: document.getElementById('post_content').value,
+                is_anonymous: isAnon,
+                author_display_name: isAnon ? "Anonymous Athlete" : currentAthleteName.split(' ')[0]
+                is_anonymous: document.getElementById('post_anonymous').checked,
+                author_display_name: document.getElementById('post_anonymous').checked ? "Anonymous Athlete" : "Sarah Jenkins"
+            };
+
+            try {
+                await fetch('/api/v1/community/posts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                closeCommunityModal();
+                loadCommunityPosts();
+            } catch (err) {
+                alert("Failed to publish post: " + err);
+            }
+        }
+
+        // ================= DOCTOR BRIEF & FHIR =================
+        function toggleDoctorView(viewType) {
+            if (viewType === 'simple') {
+                document.getElementById('pane-simple-summary').classList.remove('hidden');
+                document.getElementById('pane-clinical-summary').classList.add('hidden');
+                document.getElementById('btn-view-simple').className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#06B6D4] text-slate-950 shadow-sm';
+                document.getElementById('btn-view-clinical').className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#1F2937] text-[#9CA3AF] hover:text-[#F9FAFB]';
+            } else {
+                document.getElementById('pane-simple-summary').classList.add('hidden');
+                document.getElementById('pane-clinical-summary').classList.remove('hidden');
+                document.getElementById('btn-view-clinical').className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#06B6D4] text-slate-950 shadow-sm';
+                document.getElementById('btn-view-simple').className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#1F2937] text-[#9CA3AF] hover:text-[#F9FAFB]';
+                document.getElementById('btn-view-simple').className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white shadow-sm';
+                document.getElementById('btn-view-clinical').className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:text-slate-900';
+            } else {
+                document.getElementById('pane-simple-summary').classList.add('hidden');
+                document.getElementById('pane-clinical-summary').classList.remove('hidden');
+                document.getElementById('btn-view-clinical').className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white shadow-sm';
+                document.getElementById('btn-view-simple').className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-600 hover:text-slate-900';
+            }
+        }
+
+        async function loadFhirBundle() {
+            try {
+                const res = await fetch(`/api/v1/export/fhir-bundle/${currentUserId}`);
+                const data = await res.json();
+                document.getElementById('fhir_json_code').innerText = JSON.stringify(data, null, 2);
+            } catch (err) {
+                console.error("FHIR load error:", err);
+            }
+        }
+
+        function downloadFhirBundle() {
+            const jsonText = document.getElementById('fhir_json_code').innerText;
+            const blob = new Blob([jsonText], { type: 'application/fhir+json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `fhir-doctor-brief-${currentUserId.slice(0, 8)}.json`;
+            a.click();
+        }
+
+        function copyFhir() {
+            const jsonText = document.getElementById('fhir_json_code').innerText;
+            navigator.clipboard.writeText(jsonText);
+            alert("FHIR JSON copied to clipboard!");
+        }
+
+        function openPrintableReport() {
+            window.open(`/api/v1/export/clinical-report/${currentUserId}`, '_blank');
+        }
+
+        // Initialize on DOM load
+        window.addEventListener('DOMContentLoaded', () => {
+            runAthleticCheck();
+            loadCommunityPosts();
+            loadFhirBundle();
+        });
+    </script>
+</body>
+</html>
